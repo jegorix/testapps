@@ -73,9 +73,18 @@ main .features{
 
 main .features h1{
     font-size: 50px;
+    padding-left: 100px;
 }
 
 main .features p{
     margin: 20px auto;
     max-width: 400px;
+}
+
+.alert-warning{
+    float: left;
+    clear: both;
+    width: 400px;
+    margin: 20px 34%;
+    text-align: left;
 }
