@@ -7,15 +7,19 @@
 {% block content %}
 <div class="features">
     <h1>Новости на сайте</h1>
-    {% for record in news %}
-        <div class="alert alert-warning">
-            <h3>{{record.title}}</h3>
-            <h4>{{record.anons}}</h4>
-            <p>{{record.full_text}}</p>
-            <p>{{record.date}}</p>
+    {% if news %}
+        {% for record in news %}
+            <div class="alert alert-warning">
+                <h3>{{record.title}}</h3>
+                <h4>{{record.anons}}</h4>
+                <p>{{record.full_text}}</p>
+                <p>{{record.date}}</p>
 
-        </div>
-    {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+    <p>Нет записей</p>
+    {% endif %}
 
 </div>
 
