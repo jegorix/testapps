@@ -1,12 +1,22 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-Главная страница
+{{title}}
 {% endblock %}
 
 {% block content %}
-<h1>Главная страница</h1>
-<p>Главная страница</p>
+<div class="features">
+    <h1>{{title}}</h1>
+    <p>You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+April 10, 2025 - 16:22:56
+Django version 5.2, using settings 'app1.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.</p>
+    <p></p>
+
+    <button class="btn btn-warning">На страницу про нас</button>
+</div>
 
 
 {% endblock %}
