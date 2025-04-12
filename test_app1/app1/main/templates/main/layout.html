@@ -15,15 +15,15 @@
 
 <aside>
 
-    <img src="{% static 'main/image/svg-2.svg' %}" alt="logo">
-    <span class="logo">jegorix</span>
+    <a href="{% url 'index' %}"><img src="{% static 'main/image/svg-2.svg' %}" alt="logo"></a>
+    <a class="logo" href="{% url 'index' %}">jegorix</a>
     <h3>Навигация</h3>
     <ul>
-        <a href="{% url 'index' %}"><li><i class="fa-solid fa-house"></i>Главная</li></a>
-        <a href="{% url 'about' %}"><li><i class="fa-regular fa-address-card"></i>Про нас</li></a>
-        <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i>Новости</li></a>
-        <a href="#"><li><i class="fa-solid fa-paper-plane"></i>Контакты</li></a>
-        <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fa-regular fa-square-plus"></i>Добавить запись</button></li></a>
+        <a href="{% url 'index' %}"><li><i class="fa-solid fa-house"></i> Главная</li></a>
+        <a href="{% url 'about' %}"><li><i class="fa-regular fa-address-card"></i> Про нас</li></a>
+        <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-newspaper"></i> Новости</li></a>
+        <a href="#"><li><i class="fa-solid fa-paper-plane"></i> Контакты</li></a>
+        <a href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fa-regular fa-square-plus"></i> Добавить</button></li></a>
     </ul>
 
 </aside>
