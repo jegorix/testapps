@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Articles
 from .forms import ArticlesForm
-from django.views.generic import DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView, UpdateView, DeleteView, CreateView
 
 # Create your views here.
 
@@ -41,20 +41,26 @@ class NewsDeleteView(DeleteView):
 
 
 
-def create(request):
-    error = ''
-    if request.method == 'POST':
-        form = ArticlesForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('index')
-        else:
-            error = 'Форма заполнена неверно'
+# def create(request):
+#     error = ''
+#     if request.method == 'POST':
+#         form = ArticlesForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('index')
+#         else:
+#             error = 'Форма заполнена неверно'
+#
+#
+#     form = ArticlesForm()
+#     data = {
+#         'form': form,
+#         'error': error
+#     }
+#     return render(request, 'news/create.html', {'form': form})
 
-
-    form = ArticlesForm()
-    data = {
-        'form': form,
-        'error': error
-    }
-    return render(request, 'news/create.html', {'form': form})
+class ArticleCreateView(CreateView):
+    model = Articles
+    template_name = 'news/create.html'
+    form_class = ArticlesForm
+    success_url = '/news/'
