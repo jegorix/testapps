@@ -11,9 +11,11 @@
         {% for record in news %}
             <div class="alert alert-warning">
                 <h3>{{record.title}}</h3>
-                <h4>{{record.anons}}</h4>
-                <p>{{record.full_text}}</p>
-                <p>{{record.date}}</p>
+                <p>{{record.anons}}</p>
+                <a href="{% url 'news_detail' record.id %}" class="btn btn-warning">Читать</a>
+<!--                <p>{{record.full_text}}</p>-->
+<!--                <p>{{record.date}}</p>-->
+
 
             </div>
         {% endfor %}
