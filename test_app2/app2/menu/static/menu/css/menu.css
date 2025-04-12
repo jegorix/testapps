@@ -1,0 +1,101 @@
+html, body {
+    height: 100%;
+    background-color: #2c2c2e; /* space gray фон */
+    color: #ffe4d1; /* кожа: тёплый, мягкий оттенок */
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.cover-container {
+    max-width: 42em;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.masthead {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 228, 209, 0.3); /* тонкая кожа-линия */
+    padding-bottom: 1rem;
+}
+
+.masthead .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.masthead-brand {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #f4cbb7;
+}
+
+.nav-masthead {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-link {
+    color: #f9d5c2;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffe4d1;
+    border-bottom: 2px solid #ffe4d1;
+}
+
+.cover {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cover-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ffe4d1;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #f9d5c2;
+}
+
+.btn-secondary {
+    background-color: #f4cbb7;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    color: #2c2c2e;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #f9d5c2;
+    color: #2c2c2e;
+}
+
+.mastfoot {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    border-top: 1px solid rgba(255, 228, 209, 0.2);
+    padding-top: 1rem;
+}

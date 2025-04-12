@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 # Create your views here.
 
-def home(request):
-    return HttpResponse("Hello, world. You're at the polls page.")
+class HomePageView(TemplateView):
+    template_name = 'menu/base.html'
