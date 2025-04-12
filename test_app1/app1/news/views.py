@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Articles
 from .forms import ArticlesForm
 from django.views.generic import DetailView, ListView, UpdateView, DeleteView, CreateView
+from django.contrib import messages
 
 # Create your views here.
 
@@ -64,3 +65,8 @@ class ArticleCreateView(CreateView):
     template_name = 'news/create.html'
     form_class = ArticlesForm
     success_url = '/news/'
+
+    def form_valid(self, form):
+        messages.success(self.request, "Новость успешно добавлена!")
+        return super().form_valid(form)
+
