@@ -2,12 +2,19 @@ body{
     background: #2c2c2c;
 }
 
+
+main {
+    margin-left: 25%; /* 20% + 2.5% padding слева и справа */
+}
+
 aside {
-    float: left;
-    background: #181818;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 20%;
+    background: #181818;
     padding: 2.5%;
-    height: 100vh;
     color: #fff;
     border-right: 5px solid #4d4d4d;
 }
@@ -99,4 +106,14 @@ form{
 {
     color: #fff;
     text-decoration: none;
+}
+
+
+.news{
+    margin-left: 23%;
+}
+
+.delete_block{
+    margin-left: 16%;
+    margin-top: 5%;
 }

@@ -9,7 +9,7 @@
     <h1>Новости на сайте</h1>
     {% if news %}
         {% for record in news %}
-            <div class="alert alert-warning">
+            <div class="alert alert-warning news">
                 <h3>{{record.title}}</h3>
                 <p>{{record.anons}}</p>
                 <a href="{% url 'news_detail' record.id %}" class="btn btn-warning">Читать</a>
