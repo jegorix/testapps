@@ -11,9 +11,39 @@
 </head>
 <body>
 
+
+
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">jegorix</h3>
+          <nav class="nav nav-masthead justify-content-center">
+
+
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %} active {% endif %}" href="{% url 'home' %}">Home</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'create_task' %} active {% endif %}" href="{% url 'create_task' %}">Create</a>
+            <a class="nav-link {% if request.resolver_match.url_name == 'show_tasks' %} active {% endif %}" href="{% url 'show_tasks' %}">Show</a>
+
+          </nav>
+        </div>
+      </header>
+
 {% block content %}
 
 {% endblock %}
+
+ </div>
+
+
+
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+        </div>
+      </footer>
+
+
 
 
 </body>
