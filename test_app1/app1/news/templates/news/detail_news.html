@@ -9,7 +9,9 @@
     <h1>{{article.title}}</h1>
     <p>{{article.date}}</p>
     <p>{{article.full_text}}</p>
-    <a href="{% url 'news_home' %}" class="btn btn-success">Назад</a>
+    <a href="{% url 'news_home' %}" class="btn btn-success mb-3">Назад</a><br>
+    <a href="{% url 'news_update' article.id %}" class="btn btn-warning mb-3">Редактировать</a><br>
+    <a href="{% url 'news_delete' article.id %}" class="btn btn-danger">Удалить</a>
 
 </div>
 
