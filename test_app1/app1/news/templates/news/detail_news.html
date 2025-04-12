@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+{{article.title}}
+{% endblock %}
+
+{% block content %}
+<div class="features">
+    <h1>{{article.title}}</h1>
+    <p>{{article.date}}</p>
+    <p>{{article.full_text}}</p>
+    <a href="{% url 'news_home' %}" class="btn btn-success">Назад</a>
+
+</div>
+
+{% endblock %}
