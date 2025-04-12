@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="features">
+<div class="features" >
 
     <h1>Удаление статьи</h1>
-  <form method="POST">
+  <form method="POST" class="delete_block">
     {% csrf_token %}
      <h1>{{article.title}}</h1>
       <p>{{article.full_text}}</p>
-    <button class="btn btn-danger" type="submit">Удалить статью</button><br>
+    <button class="btn btn-danger mb-3" type="submit">Удалить статью</button><br>
+    <a href="{% url 'news_home' %}" class="btn btn-success mb-3">Назад</a><br>
   </form>
 
 
