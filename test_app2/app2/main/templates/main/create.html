@@ -9,19 +9,33 @@ Create
 
 {% block content %}
 
-<main role="main" class="inner cover">
+<main role="main" class="inner cover mainframe">
 <div class="features">
 
-    <h1 class="">Adding a Task</h1>
-<form method="POST" class="task-form">
-    <input type="text" placeholder="Task Title" class="form-input"><br>
-    <input type="text" placeholder="Task Description" class="form-input"><br>
-    <input type="date" class="form-input"><br>
 
-    <div class="form-radio-group">
-        <label><input type="radio" name="priority" value="low"> Low</label>
-        <label><input type="radio" name="priority" value="medium"> Medium</label>
-        <label><input type="radio" name="priority" value="high"> High</label>
+
+
+<h1 class="">Adding a Task</h1>
+<form method="POST" class="task-form">
+
+
+    {{form.title}}
+    {{form.description}}
+    {{form.deadline}}
+
+<div class="form-radio-group-wrapper">
+    {% for radio in form.priority %}
+        <label class="form-radio-option">
+            {{radio.tag}} {{radio.choice_label}}
+        </label>
+    {% endfor %}
+ </div>
+
+
+      <div class="form-check-wrapper">
+        <label class="form-check-label">
+            {{ form.is_done }} <span>Task completed</span>
+        </label>
     </div>
 
     {% csrf_token %}
