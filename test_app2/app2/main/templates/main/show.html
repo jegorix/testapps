@@ -1,0 +1,36 @@
+{% extends 'menu/base.html' %}
+
+{% block title %}Show{% endblock %}
+
+{% block content %}
+
+        <h1 class="task-heading">Your Tasks</h1>
+        <div class="task-list">
+            {% for task in tasks %}
+                <div class="task-card">
+                    <h2 class="task-title">{{ task.title }}</h2>
+                    {% if task.description %}
+                        <p class="task-description">{{ task.description }}</p>
+                    {% endif %}
+                    <p class="task-created">Created: {{ task.created_at|date:"d.m.Y H:i" }}</p>
+                    {% if task.deadline %}
+                        <p class="task-deadline">Deadline: {{ task.deadline|date:"d.m.Y" }}</p>
+                    {% endif %}
+                    <p class="task-priority">Priority:
+                        <span class="priority-{{ task.priority }}">{{ task.priority|title }}</span>
+                    </p>
+                    <p class="task-status {% if task.is_done %}done{% else %}not-done{% endif %}">
+                        {% if task.is_done %}
+                            ✓ Completed
+                        {% else %}
+                            ✗ Not completed
+                        {% endif %}
+                    </p>
+
+                </div>
+            {% empty %}
+                <p class="no-tasks">Задач пока нет.</p>
+            {% endfor %}
+        </div>
+
+{% endblock %}
