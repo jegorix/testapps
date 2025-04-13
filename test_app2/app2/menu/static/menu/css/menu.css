@@ -14,8 +14,7 @@ html, body {
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 100%;
+    min-height: 100vh; /* Используем vh для полной высоты */
 }
 
 .masthead {
@@ -66,6 +65,7 @@ html, body {
     font-size: 2.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    margin-top: 10rem;
     color: #ffe4d1;
 }
 
@@ -93,7 +93,7 @@ html, body {
 }
 
 .mastfoot {
-    margin-top: 2rem;
+    margin-top: 10rem;
     font-size: 0.9rem;
     color: #aaa;
     border-top: 1px solid rgba(255, 228, 209, 0.2);
@@ -265,3 +265,120 @@ textarea.form-input {
     80% { opacity: 1; }
     100% { opacity: 0; display: none; }
 }
+
+
+/* Стили для контейнера задач */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Карточка задачи */
+.task-card {
+    background-color: #f1f3f5;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    max-width: 600px;
+    width: 100%; /* Устанавливаем ширину 100% от max-width */
+    height: 350px; /* Фиксированная высота */
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-y: auto; /* Прокрутка, если содержимое не помещается */
+    box-sizing: border-box; /* Учитываем padding в размерах */
+}
+
+.task-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок задачи */
+.task-title {
+    font-size: 1.8rem;
+    color: #2c2c2e;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+/* Описание задачи */
+.task-description {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Дата создания */
+.task-created {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+/* Срок выполнения */
+.task-deadline {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* Приоритет */
+.task-priority {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.priority-low {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.priority-medium {
+    color: #ffa500;
+    font-weight: 600;
+}
+
+.priority-high {
+    color: #e53935;
+    font-weight: 600;
+}
+
+/* Статус */
+.task-status {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.task-status.done {
+    color: #4caf50;
+}
+
+.task-status.not-done {
+    color: #e53935;
+}
+
+/* Сообщение, если задач нет */
+.no-tasks {
+    font-size: 1.2rem;
+    color: #777;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Заголовок страницы */
+.task-heading {
+    color: #ffe4d1;
+    font-family: 'Raleway', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
