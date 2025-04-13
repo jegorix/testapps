@@ -9,7 +9,21 @@
     <link rel="stylesheet" href="{% static 'menu/css/menu.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
+
+
 <body>
+
+{% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="flash-message {{message.tag}}">
+                {{message}}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endif %}
 
 
 
