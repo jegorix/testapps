@@ -99,3 +99,79 @@ html, body {
     border-top: 1px solid rgba(255, 228, 209, 0.2);
     padding-top: 1rem;
 }
+
+
+.task-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f1f3f5; /* светло-серый фон */
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-input:focus {
+    border-color: #d4a373; /* кожа */
+    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
+    outline: none;
+}
+
+.form-radio-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-family: 'Raleway', sans-serif;
+}
+
+.form-radio-group label {
+    background-color: #fff;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: all 0.3s;
+     color: #2c2c2c;
+}
+
+.form-radio-group input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.form-radio-group input[type="radio"]:checked + span,
+.form-radio-group input[type="radio"]:checked {
+    border-color: #d4a373;
+}
+
+.custom-btn {
+    margin-top: 2rem;
+    display: inline-block;
+    width: 100%; /* чтобы была длинной */
+    padding: 0.75rem 1rem;
+    background-color: #e6aa83; /* кожаный цвет */
+    color: #2c2c2c; /* чёткий тёмный текст */
+    border: none;
+    border-radius: 1.5rem; /* плавно скруглённые углы */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-btn:hover {
+    background-color: #d9966b; /* чуть темнее при наведении */
+    transform: translateY(-2px);
+}
