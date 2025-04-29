@@ -385,7 +385,7 @@ textarea.form-input {
 .custom-btn-delete{
     margin-top: 2rem;
     display: inline-block;
-    width: 100%; /* чтобы была длинной */
+    width: 80%; /* уменьшена ширина кнопки */
     padding: 0.75rem 1rem;
     background-color: #800020; /* кожаный цвет */
     color: #f1f3f5; /* чёткий тёмный текст */
@@ -396,8 +396,38 @@ textarea.form-input {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
 }
+
+.custom-btn-delete:hover {
+    background-color: #66001f; /* более тёмный оттенок кожаного */
+    transform: scale(1.05); /* лёгкое увеличение кнопки */
+}
+
+.custom-btn-back{
+    margin-top: 2rem;
+    display: inline-block;
+    width: 80%; /* уменьшена ширина кнопки */
+    padding: 0.75rem 1rem;
+    background-color: #6B8E23; /* кожаный цвет */
+    color: #f1f3f5; /* чёткий тёмный текст */
+    border: none;
+    border-radius: 1.5rem; /* плавно скруглённые углы */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.custom-btn-back:hover {
+    background-color: #556B2F; /* более тёмный оттенок болотного */
+    transform: scale(1.05); /* лёгкое увеличение кнопки */
+}
+
+
+
+
 
 .task-del{
 margin-bottom: 8rem;

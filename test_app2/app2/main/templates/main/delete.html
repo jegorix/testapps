@@ -23,6 +23,8 @@ Delete
     {% csrf_token %}
 
     <button class="custom-btn-delete" type="submit">Delete Task</button><br>
+    <a href="{% url 'show_tasks' %}" class="custom-btn-back">Back</a><br>
+
   </form>
 
 
