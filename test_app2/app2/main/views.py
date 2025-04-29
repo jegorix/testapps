@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Tasks
 from .forms import TasksForm
 from django.contrib import messages
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 
 # Create your views here.
 #
@@ -22,6 +22,13 @@ class TasksListView(ListView):
     template_name = 'main/show.html'
     context_object_name = 'tasks'
     ordering = ['-deadline']
+
+
+class TaskUpdateView(UpdateView):
+    model = Tasks
+    template_name = 'main/create.html'
+    form_class = TasksForm
+    success_url = '/tmanager/show/'
 
 
 def show(request):
