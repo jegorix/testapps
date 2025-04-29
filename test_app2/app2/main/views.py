@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Tasks
 from .forms import TasksForm
 from django.contrib import messages
-from django.views.generic import CreateView, ListView, UpdateView
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 
 # Create your views here.
 #
@@ -31,6 +31,15 @@ class TaskUpdateView(UpdateView):
     success_url = '/tmanager/show/'
 
 
+class TaskDeleteView(DeleteView):
+    model = Tasks
+    context_object_name = 'task'
+    template_name = 'main/delete.html'
+    success_url = '/tmanager/show/'
+
+
 def show(request):
     return render(request, 'main/create.html')
+
+
 

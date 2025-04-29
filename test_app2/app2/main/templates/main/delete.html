@@ -1,0 +1,32 @@
+{% extends 'menu/base.html' %}
+
+
+{% block title %}
+Delete
+{% endblock %}
+
+
+
+{% block content %}
+
+<main role="main" class="inner cover mainframe">
+<div class="features">
+
+
+<h1 class="task-del">Deleting a Task</h1>
+<form method="POST" class="task-form">
+
+
+ <h2 class="task-title">{{ task.title }}</h2>
+
+
+    {% csrf_token %}
+
+    <button class="custom-btn-delete" type="submit">Delete Task</button><br>
+  </form>
+
+
+</div>
+ </main>
+
+{% endblock %}
