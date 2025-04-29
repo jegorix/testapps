@@ -41,5 +41,9 @@ class TaskDeleteView(DeleteView):
 def show(request):
     return render(request, 'main/create.html')
 
-
+def set_status(request, task_id):
+    task = get_object_or_404(Tasks, pk=task_id)
+    task.is_done = not task.is_done
+    task.save()
+    return redirect('/tmanager/show/')
 
