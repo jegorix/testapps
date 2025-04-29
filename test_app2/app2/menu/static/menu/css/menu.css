@@ -93,7 +93,7 @@ html, body {
 }
 
 .mastfoot {
-    margin-top: 10rem;
+    margin-top: 35px;
     font-size: 0.9rem;
     color: #aaa;
     border-top: 1px solid rgba(255, 228, 209, 0.2);
@@ -271,9 +271,9 @@ textarea.form-input {
 .task-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0rem;
 }
 
 /* Карточка задачи */
@@ -401,4 +401,41 @@ textarea.form-input {
 
 .task-del{
 margin-bottom: 8rem;
+}
+
+
+.manage-buttons {
+    display: flex; /* Выставляем кнопки в одну строку */
+    gap: 20px; /* Отступы между кнопками */
+    margin-bottom: 15px; /* Отступ сверху, чтобы кнопки не прижимались к содержимому */
+    justify-content: center;
+}
+
+.manage-buttons a {
+    padding: 8px 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+/* Эффект при наведении */
+.manage-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Для последней кнопки, если необходимо, можно удалить отступ справа */
+.manage-buttons a:last-child {
+    margin-right: 0;
+}
+
+.btn-outline-custom {
+    color: #d16b86;
+    border-color: #d16b86;
+}
+
+.btn-outline-custom:hover {
+    background-color: #d16b86;
+    color: white;
 }
