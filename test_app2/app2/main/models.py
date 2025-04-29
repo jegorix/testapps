@@ -29,3 +29,6 @@ class Tasks(models.Model):
     class Meta:
         verbose_name = 'Задача'
         verbose_name_plural = 'Задачи'
+
+    def get_absolute_url(self):
+        return 'show/'
