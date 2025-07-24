@@ -1,0 +1,45 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Товары{% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{% if category %}{{ category.name }}{% else %}Все товары{% endif %}</h1>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Сортировка
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="?sort=name">По названию (А-Я)</a></li>
+                <li><a class="dropdown-item" href="?sort=-name">По названию (Я-А)</a></li>
+                <li><a class="dropdown-item" href="?sort=price">По цене (дешевые)</a></li>
+                <li><a class="dropdown-item" href="?sort=-price">По цене (дорогие)</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    {% if not products %}
+        <div class="alert alert-info">Товары в этой категории отсутствуют</div>
+    {% else %}
+        <div class="row">
+            {% for product in products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        </a>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <a href="{{ product.get_absolute_url }}" class="text-decoration-none">{{ product.name }}</a>
+                            </h5>
+                            <p class="card-text mt-auto">{{ product.price }} руб.</p>
+                            <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary mt-2">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
