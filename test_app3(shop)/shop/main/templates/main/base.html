@@ -29,7 +29,7 @@
                     {% endfor %}
                 </ul>
                 <div class="d-flex">
-                    {% comment %} <a href="{% url "cart:cart_detail" %}" class="btn btn-outline-light position-relative me-3"> {% endcomment %}
+                    <a href="{% url "cart:cart_detail" %}" class="btn btn-outline-light position-relative me-3">
                         <i class="bi bi-cart"></i> Корзина
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                             {% with total_items=cart|length %}

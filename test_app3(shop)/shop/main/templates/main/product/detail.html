@@ -1,6 +1,6 @@
 
 {% extends "main/base.html" %}
-
+{% load static %}
 {% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-6">
                 <h1>{{ product.name }}</h1>
-                <p class="price h4 text-danger">{{ product.price }} руб.</p>
+                <p class="price h4 text-danger">{{ product.price }} $.</p>
                 <p class="text-muted">Категория: 
                     <a href="{{ product.category.get_absolute_url }}">
                         {{ product.category.name }}
@@ -22,10 +22,10 @@
                     <p>{{ product.description|linebreaks }}</p>
                 </div>
                 <div class="mt-4">
-                    {% comment %} <form action="{% url "cart:cart_add" product.id %}" method="post"> {% endcomment %}
+                    <form action="{% url "cart:cart_add" product.id %}" method="POST">
                         {{ cart_product_form }}
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-lg">Добавить в корзину</button>
+                         <button type="submit" class="btn btn-primary btn-lg">Добавить в корзину</button>
                     </form>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                                 <h5 class="card-title">
                                     <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                                 </h5>
-                                <p class="card-text">{{ product.price }} руб.</p>
+                                <p class="card-text">{{ product.price }} $.</p>
                             </div>
                         </div>
                     </div>
