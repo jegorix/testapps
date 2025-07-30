@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django - Project</title>
+</head>
+<body>
+    <table>
+        {% for person in people %}
+            <tr>
+                <td>{{ person.id }}</td>
+                <td>{{person.first_name}}</td>
+                <td>{{person.last_name}}</td>
+                <td>{{person.age}}</td>
+                <td>{{person.created}}</td>
+                <td>{{person.work_experience}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table>
+        {% for good in goods %}
+        <tr>
+            <td>{{good.id}}.</td>
+            <td>{{good.name}}.</td>
+            <td>{{good.company}}</td>
+            <td>{{good.price}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h1>Good</h1>
+    <h2>{{item}}</h2>
+
+</body>
+</html>
