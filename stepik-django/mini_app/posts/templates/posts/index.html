@@ -36,5 +36,26 @@
     <h1>Good</h1>
     <h2>{{item}}</h2>
 
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div>
+            {% for field in form %}
+
+            <div class="form-group">
+
+                {{field.label_tag}}
+                <div>{{field}}</div>
+                
+               {% for erorr in field.errors %}
+               <div class="alert alert-danger">{{error}}</div>
+               {% endfor %}
+                
+            </div>
+
+            {% endfor %}
+        </div>
+
+    <input type="submit" value="Send">
+    </form>
 </body>
 </html>
