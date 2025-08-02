@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django - Project</title>
+</head>
+<body>
+
+    {% comment %} <form method="POST" action="create/">
+        {% csrf_token %}
+
+        <table>
+            <tbody>
+                {{form.as_table}}
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Сохранить"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form> {% endcomment %}
+
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <table>
+            {{form.as_table}}
+        </table>
+
+        <input type="submit" value="Отправить">
+    </form>
+
+</body>
+</html>

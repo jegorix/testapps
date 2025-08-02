@@ -6,7 +6,67 @@
     <title>Django - Project</title>
 </head>
 <body>
-    <table>
+
+    <form method="POST" action="create/">
+        {% csrf_token %}
+
+        <table>
+            <tbody>
+                {{form.as_table}}
+                <tr>
+                    <td colspan="2" align="center"><input type="submit" value="Сохранить"></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+
+    {% if people.count > 0 %}
+    <h2>Список пользователей</h2>
+    
+        <table>
+            <thead align="center">
+                <tr>
+                    <th width="10%">Id</th>
+                    <th width="30%">Имя</th>
+                    <th width="10%">Возраст</th>
+                    <th width="50%">Действие</th>
+                </tr>
+            </thead>
+
+        <tbody align="center">
+
+            {% for person in people %}
+            
+            <tr>
+                <td>{{person.id}}</td>
+                <td>{{person.name}}</td>
+                <td>{{person.age}}</td>
+                <td>
+                    <a href="edit/{{person.id}}">Изменить</a> | <a href="delete/{{ person.id }}">Удалить</a>
+                </td>
+            </tr>
+            
+            {% endfor %}
+
+        </tbody>
+
+            
+
+        </table>
+    
+    
+    {% endif %}
+
+
+
+
+
+
+
+
+
+    {% comment %} <table>
         {% for person in people %}
             <tr>
                 <td>{{ person.id }}</td>
@@ -45,7 +105,7 @@
 
                 {{field.label_tag}}
                 <div>{{field}}</div>
-                
+
                {% for erorr in field.errors %}
                <div class="alert alert-danger">{{error}}</div>
                {% endfor %}
@@ -56,6 +116,6 @@
         </div>
 
     <input type="submit" value="Send">
-    </form>
+    </form> {% endcomment %}
 </body>
 </html>

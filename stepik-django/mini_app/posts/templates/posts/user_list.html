@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+
+<body>
+    <h2>USERS</h2>
+
+    {% if users %}
+
+    <table>
+        <thead>
+            <tr>
+                <th width="10%">Id</th>
+                <th width="30%">Name</th>
+                <th width="10%">Age</th>
+                <th width="25">Phone number</th>
+                <th width="25">Email</th>
+            </tr>
+            </tr>
+        </thead>
+
+        <tbody align="center">
+            {% for user in users %}
+
+        <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+    <h2>Список пользователей пуст</h2>
+
+    {% endif %}
+
+    
+    
+</body>
+</html>

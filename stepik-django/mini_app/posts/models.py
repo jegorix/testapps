@@ -3,18 +3,35 @@ from django.utils import timezone
 
 # Create your models here.
 
-class Product(models.Model):
+
+class Person(models.Model):
+    name = models.CharField(max_length=20)
+    age = models.IntegerField()
+
+
+class Posts(models.Model):
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+    
+    
+class User(models.Model):
     name = models.CharField(max_length=50)
-    company = models.CharField(max_length=30)
-    price = models.IntegerField()
+    age = models.IntegerField(default=18)
+    phone = models.CharField(max_length=20)
+    email = models.CharField(max_length=50)
+
+# class Product(models.Model):
+#     name = models.CharField(max_length=50)
+#     company = models.CharField(max_length=30)
+#     price = models.IntegerField()
     
     
-class Worker(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    age = models.SmallIntegerField(null=True)
-    created = models.DateTimeField(default=timezone.now)
-    work_experience = models.SmallIntegerField(default=0)
+# class Worker(models.Model):
+#     first_name = models.CharField(max_length=100)
+#     last_name = models.CharField(max_length=100)
+#     age = models.SmallIntegerField(null=True)
+#     created = models.DateTimeField(default=timezone.now)
+#     work_experience = models.SmallIntegerField(default=0)
 
 
 class Post(models.Model):
