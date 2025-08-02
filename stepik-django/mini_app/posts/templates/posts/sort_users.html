@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort users</title>
+</head>
+<body>
+
+    <h1>Choose sorting type</h1>
+
+     <form method="GET">
+        {% csrf_token %}
+
+    <table>
+       {{form.as_table}}
+    </table>
+
+    <input type="submit" value="Сортировать">
+    </form>
+
+    <h1>Sorted Users</h1>
+
+   <h2>Список пользователей: сортировка по {{ sort_field }}, {{ sort_direction }}.</h2>
+   
+    {% if users %}
+
+   <table>
+    
+<thead>
+    <tr>
+        <th width="10%">Id</th>
+        <th width="30%">Name</th>
+        <th width="10%">Age</th>
+        <th width="25">Phone number</th>
+        <th width="25">Email</th>
+    </tr>
+</thead>
+
+<tbody align="center">
+    {% for user in users %}
+    
+    <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.age}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.email}}</td>
+    </tr>
+
+
+    {% endfor %}
+    
+</tbody>
+
+   </table>
+
+   {% else %}
+   <h2>Записей нет</h2>
+
+
+{% endif %}
+
+</body>
+</html>

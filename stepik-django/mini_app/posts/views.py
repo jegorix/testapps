@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from datetime import datetime
-from .forms import UserForm, PersonForm, ProfileForm, UserFormAdd
-from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
+from .forms import UserForm, PersonForm, ProfileForm, UserFormAdd, SortForm
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, HttpResponsePermanentRedirect
 from .models import Person, User
 from django.forms.models import model_to_dict
 # Create your views here.
@@ -94,11 +94,66 @@ def add_user(request):
         form = UserFormAdd(request.POST)
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect("/user/")
+        return HttpResponsePermanentRedirect("/user/")
     
     else:
         form = UserFormAdd()
         return render(request=request, template_name="posts/user_profile.html", context={"form": form})
         
             
+def delete_profile(request, id):
+    try:
+        user = User.objects.get(id=id)
+        user.delete()
+        return HttpResponsePermanentRedirect("/user/")
+    
+    except User.DoesNotExist:
+        return HttpResponseNotFound(f"<h2>User profile with id={id} not found</h2>.")
+    
+    
+def edit_profile(request, id):
+    try:
+        user = User.objects.get(id=id)
+        
+        if request.method == "POST":
+            form = UserFormAdd(request.POST, instance=user)
             
+            if form.is_valid():
+                form.save()
+            return HttpResponsePermanentRedirect("/user/")
+            
+        
+        form = UserFormAdd(instance=user)
+        return render(request=request, template_name="posts/edit_user.html", context={"form": form})
+    
+    except User.DoesNotExist:
+        return HttpResponseNotFound(f"<h2>User profile with id={id} not found</h2>.")
+    
+    
+def sort_users(request):
+    
+    users = User.objects.all()
+    
+    sort_field = request.GET.get("sort_field", "id")
+    sort_direction = request.GET.get("sort_direction", "asc")
+    
+    if sort_direction == 'desc':
+        sort_param = f'-{sort_field}'
+    else:
+        sort_param = sort_field
+        
+    users = users.order_by(sort_param)
+    
+    form = SortForm(initial={
+        'sort_field': sort_field,
+        "sort_direction": sort_direction
+    })
+    
+  
+    return render(request=request, template_name="posts/sort_users.html", context={
+                "form": form,
+                "users": users,
+                "sort_field": sort_field,
+                "sort_direction": sort_direction
+            })
+        

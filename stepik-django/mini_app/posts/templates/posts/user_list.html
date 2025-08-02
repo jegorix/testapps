@@ -32,6 +32,7 @@
             <td>{{user.age}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.email}}</td>
+            <td><a href="{% url "delete_user" user.id%}">Удалить</a> / <a href="{% url "edit_user" user.id%}">Изменить</a></td>
         </tr>
 
         {% endfor %}

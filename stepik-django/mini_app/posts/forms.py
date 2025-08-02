@@ -43,6 +43,32 @@ class UserFormAdd(ModelForm):
         fields = ["name", "age", "phone", "email"]
     
 
+class SortForm(forms.Form):
+    SORT_FIELD_CHOICES = [
+        ("id", "Id"),
+        ("name", "Имя"),
+        ("age", "Возраст"),
+        ("phone", "Телефон"),
+        ("email", "E-Mail")
+    ]
+    
+    SORT_DIRECTION_CHOICES = [
+        ("asc", "По возрастанию"),
+        ("desc", "По убыванию"),
+    ]
+    
+    sort_field = forms.ChoiceField(
+        label= "Сортировать по",
+        choices=SORT_FIELD_CHOICES,
+        initial="id"
+    )
+
+    sort_direction = forms.ChoiceField(
+        label="Направление",
+        choices=SORT_DIRECTION_CHOICES,
+        initial="asc",
+        widget=forms.RadioSelect
+    )
 
 
     
