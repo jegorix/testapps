@@ -1,11 +1,12 @@
 {% extends "blog/base.html" %}
+{% load blog_tags %}
 
 {% block title %}{{post.title}}{% endblock title %}
 
 {% block content %}
 <h2>{{post.title}}</h2>
 <ul>
-    <li><p>{{post.body}}</p></li>
+    <li><p>{{post.body|markdown}}</p></li>
     <li>{{post.status}}</li>
     <li><p class="Date">Published {{post.publish}} by {{post.author}}</p></li>
 </ul>
@@ -38,7 +39,7 @@ There are no similar posts yet
         Comment {{forloop.counter}} by {{comment.name}}
         {{comment.created}}
     </p>
-    {{comment.body|linebreaks}}
+    {{comment.body|markdown}}
 </div>
 
 {% empty %}
