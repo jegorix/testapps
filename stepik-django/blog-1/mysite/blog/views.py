@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.views.decorators.http import require_POST
 from taggit.models import Tag
+from django.db.models import Count
 # Create your views here.
 
 class PostListView(ListView):
@@ -58,12 +59,22 @@ def post_detail(request, year, month, day, post):
     form = CommentForm()
     
     
+    post_tags_ids = post.tags.values_list('id', flat=True)
+    similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
+    
+    #Добавляем поле same_tags = количество тегов у каждого поста
+    similar_posts = similar_posts.annotate(same_tags=Count('tags'))
+    similar_posts = similar_posts.order_by("-same_tags", "-publish")[:4]
+    
+    # similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags', '-publish')[:4]
+    
 
     return render(request=request,
                   template_name="blog/post/detail.html",
                   context={"post": post,
                            "comments": comments,
-                           "form": form})
+                           "form": form,
+                           "similiar_posts": similar_posts})
 
 
 
