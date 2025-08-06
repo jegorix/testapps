@@ -10,4 +10,8 @@
     <li><p class="Date">Published {{post.publish}} by {{post.author}}</p></li>
 </ul>
 
+<p>
+    <a href="{% url "blog:post_share" post.id %}">Send E-Mail</a>
+</p>
+
 {% endblock content %}
