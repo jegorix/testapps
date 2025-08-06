@@ -8,7 +8,7 @@ My Blog
 
 {% for post in posts %}
 <h2>
-    <a href="{% url "blog:post_detail" post.id %}">{{post.title}}</a>
+    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
 </h2>
 
 <p class="date">
@@ -16,5 +16,7 @@ My Blog
 </p>
     {{post.body|truncatewords:30|linebreaks}}
 {% endfor %}
+
+{% include "pagination.html" with page=posts %}
 
 {% endblock content %}
