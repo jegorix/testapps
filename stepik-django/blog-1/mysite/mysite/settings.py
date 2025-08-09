@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'blog',
+        'USER': 'blog',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -138,6 +142,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Server config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = '0311egor@gmail.com'
-
+EMAIL_HOST_PASSWORD = 'xbtw kiis vmcz zcjm'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
