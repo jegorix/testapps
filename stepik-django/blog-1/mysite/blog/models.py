@@ -20,6 +20,7 @@ class Post(models.Model):
         DRAFT = 'DF', 'Draft'
         PUBLISHED = 'PB', 'Published'
     
+    #подключение тегирования
     tags = TaggableManager()
     
     title = models.CharField(max_length=250)
@@ -33,6 +34,7 @@ class Post(models.Model):
     status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT)
     
     objects = models.Manager()
+    # кастомный менеджер
     published = PublishedManager()
     
     
@@ -54,7 +56,7 @@ class Post(models.Model):
                              ])
     
     
-    
+# Добавили модель комментариев
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     name = models.CharField(max_length=80)

@@ -59,10 +59,11 @@ def post_detail(request, year, month, day, post):
                              publish__day=day,
                              slug=post,)
     
+    # добавляем комментарии
     comments = post.comments.filter(active=True)
     form = CommentForm()
     
-    
+    # загружаем похожие посты (по тегам)
     post_tags_ids = post.tags.values_list('id', flat=True)
     similar_posts = Post.published.filter(tags__in=post_tags_ids).exclude(id=post.id)
     
@@ -82,7 +83,7 @@ def post_detail(request, year, month, day, post):
 
 
 
-
+# логика рекомендации поста по e-mail
 def post_share(request, post_id):
     post = get_object_or_404(Post,
                              id=post_id,
@@ -138,6 +139,10 @@ def post_comment(request, post_id):
                            "comment": comment})
     
     
+    
+    
+    # реализация поискового механизма, используя PostgreSQL
+    
 # def post_search(request):
 #     form = SearchForm()
 #     query = None
@@ -173,7 +178,7 @@ def post_comment(request, post_id):
 #                    'results': results})
 
 
-
+# Поиск по триграммному сходству
 def post_search(request):
     form = SearchForm()
     query = None
@@ -193,3 +198,16 @@ def post_search(request):
                   {'form': form,
                    'query': query,
                    'results': results})
+    
+    
+    
+# В этом модуле вы реализовали систему тегирования, интегрировав стороннее приложение в свой проект.
+
+# Вы сгенерировали рекомендуемые посты, используя сложные наборы запросов QuerySet.
+
+# Вы также научились создавать конкретно-прикладные шаблонные теги и фильтры Django,
+# чтобы обеспечивать шаблонам конкретно-прикладные функциональности.
+
+# Создали карту сайта, чтобы поисковые системы имели возможность сканировать ваш сайт.
+
+# Затем вы разработали в своем блоге поисковый механизм, используя полнотекстовый поисковый механизм PostgreSQL.
