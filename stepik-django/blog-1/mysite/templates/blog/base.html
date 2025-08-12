@@ -23,6 +23,17 @@
         I have written {%total_posts%} posts so far.
     </p>
 
+    {% if user.is_authenticated %}
+    Hi, {{user.username}}!
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <a href="#" onclick="parentNode.submit();">Log Out</a>
+    </form>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log in</a>
+    {% endif %}
+
     <h2>Latest posts</h2>
 
     {% comment %} подключение конкретно-прикладных шаблонных тегов включающегося тега {% endcomment %}

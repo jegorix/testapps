@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'taggit',
     'django.contrib.sites',
     'django.contrib.sitemaps',
-    'django.contrib.postgres'
+    'django.contrib.postgres',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,8 @@ EMAIL_HOST_USER = '0311egor@gmail.com'
 EMAIL_HOST_PASSWORD = 'xbtw kiis vmcz zcjm'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+# Accounts logic
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
