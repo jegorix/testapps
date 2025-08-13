@@ -61,9 +61,11 @@ input[type=submit] {
 
 .errorlist {
     color: #cc0033;
-    float: left;
+    /* float: left; */
     clear: both;
-    padding-left: 10px;
+    /* padding-left: 10px; */
+    font-weight: bold;
+    padding-left: 16px;
 }
 
 /* comments */
