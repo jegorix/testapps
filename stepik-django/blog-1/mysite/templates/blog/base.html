@@ -23,6 +23,7 @@
     {% endfor %}
 {% endif %}
 
+
 <div id="sidebar">
     <h2>My blog</h2>
     <p>This is my blog
@@ -31,13 +32,16 @@
 
     {% if user.is_authenticated %}
     Hi, {{user.username}}!
+    <a href="{% url "users-profile" %}">My profile</a>
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <a href="#" onclick="parentNode.submit();">Log Out</a>
     </form>
     {% else %}
     <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Log in</a>
+    <p><a href="{% url 'login' %}">Log in</a></p>
+    <p><a href="{% url "signup" %}">Sign Up</a></p>
+    <p><a href="{% url "password_reset" %}">Forgot your password?</a></p>
     {% endif %}
 
     <h2>Latest posts</h2>

@@ -154,3 +154,8 @@ LOGIN_REDIRECT_URL = "/"
 # LOGOUT_REDIRECT_URL = "/"
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+
+
+# Media handle
+MEDIA_ROOT = BASE_DIR/'media'
+MEDIA_URL = '/media/'
