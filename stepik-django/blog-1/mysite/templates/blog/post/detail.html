@@ -3,49 +3,61 @@
 
 {% block title %}{{post.title}}{% endblock title %}
 
+
 {% block content %}
-<h2>{{post.title}}</h2>
-<ul>
-    <li><p>{{post.body|markdown}}</p></li>
-    <li>{{post.status}}</li>
-    <li><p class="Date">Published {{post.publish}} by {{post.author}}</p></li>
-</ul>
 
-<p>
-    <a href="{% url "blog:post_share" post.id %}">Send E-Mail</a>
+<h1 class="fw-word">{{post.title}}</h1>
+
+<p class="text-muted fst-italic mb-2 text-end">
+Published {{post.publish}} by {{post.author}}
 </p>
 
+{{post.body|markdown}}
 
-<h2>Similar Posts</h2>
-{% for post in similiar_posts %}
-<p>
-    <a href="{{post.get_absolute_url}}">{{post.title}}</a>
-</p>
-{%empty%}
-There are no similar posts yet
-{% endfor %}
-
-
-{% with comments.count as total_comments %}
-<h2>
-    {{total_comments}} comment{{total_comments|pluralize}}
-</h2>
-{% endwith %}
-
-{% for comment in comments %}
-
-<div class="comment">
-    <p class="info">
-        Comment {{forloop.counter}} by {{comment.name}}
-        {{comment.created}}
-    </p>
-    {{comment.body|markdown}}
+<div class="d-flex justify-content-end">
+    <a class="btn btn-primary float-left" href="{% url "blog:post_share" post.id %}">
+        Share this post
+    </a>
 </div>
 
-{% empty %}
-    <p>There are no comments</p>
-{% endfor %}
 
-{% include "blog/post/includes/comment_form.html" %}
+{% if similar_posts %}
+    <div class="row card mt-2">
+        <h2>Similar posts</h2>
+
+        {% for post in similar_posts %}
+            <p>
+                <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+            </p>
+        {% endfor %}
+        
+    </div>
+{% endif %}
+
+
+<div class="row card mt-2">
+    {% with comments.count as total_comments %}
+        <h2>
+            {{total_comments}} comment{{total_comments|pluralize}}
+        </h2>
+        <hr class="mt-1 mb-1/">
+    {% endwith %}
+
+        {% for comment in comments %}
+        
+        <div class="comment">
+            <p class="text-muted fst-italic mb-2">
+                Comment {{ forloop.counter }} by {{comment.name}}
+                {{comment.body|safe}}
+            </p>
+        </div>
+        <hr class="mt-1 mb-1/">
+
+        {%empty%}
+        <p>There are no comments.</p>
+        {% endfor %}
+
+        {% include "blog/post/includes/comment_form.html" %}
+</div>
 
 {% endblock content %}
