@@ -3,6 +3,7 @@ from django import template
 from ..models import Post
 from django.utils.safestring import mark_safe
 import markdown
+from django.db.models import Count
 
 register = template.Library()
 
@@ -16,6 +17,11 @@ def total_posts():
 def show_latest_posts(count=5):
     latest_posts = Post.published.order_by('-publish')[:count]
     return {"latest_posts": latest_posts}
+
+@register.simple_tag
+def get_most_commented_posts():
+    most_commented_posts = Post.published.annotate(count_comments=Count('comments')).order_by("-count_comments")[:3]
+    return most_commented_posts
 
 # создание конкретно-прикладного шаблонных фильтра 
 @register.filter(name="markdown", is_safe=True)
