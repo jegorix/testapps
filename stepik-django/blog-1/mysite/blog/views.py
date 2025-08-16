@@ -85,6 +85,7 @@ def post_detail(request, year, month, day, post):
 
 # логика рекомендации поста по e-mail
 def post_share(request, post_id):
+    print("REQUEST: ", request.user.username)
     post = get_object_or_404(Post,
                              id=post_id,
                              status=Post.Status.PUBLISHED)
@@ -109,7 +110,15 @@ def post_share(request, post_id):
             sent = True
             
     else:
-        form = EmailPostForm()
+        initial_values = {}
+        
+        if request.user.is_authenticated:
+            initial_values = {
+                "name": request.user.username,
+                "email": request.user.email
+            }
+            
+        form = EmailPostForm(initial=initial_values)
     
     return render(request=request,
                   template_name='blog/post/share.html',
