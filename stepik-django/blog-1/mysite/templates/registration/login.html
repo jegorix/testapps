@@ -4,13 +4,16 @@
 {% block content %}
 
 <h2>Login</h2>
-<a href="{% url 'social:begin' 'github' %}">Log In with GitHub</a>
-<br>
-<a href="{% url 'social:begin' 'google-oauth2' %}">Log In with Google</a>
-<form method="post">
-{{form.as_p}}
+<a href="{% url "signup" %}" class="btn btn-link btn-lg active btn-block">SignUp</a>
+<a href="{% url 'social:begin' 'github' %}" class="btn btn-link btn-lg active btn-block">Log In with GitHub</a>
+<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link btn-lg active btn-block">Log In with Google</a>
+
+<form method="post" class="form">
+{{form.username}}
+{{form.password}}
+<div class="mb-1">Remember me: {{form.remember_me}}</div>
 {% csrf_token %}
-<p><input type="submit" value="Login"></p>
+<input type="submit" class="btn btn-primary btn-lg" value="Login">
 </form>
 
 <p><a href="{% url "password_reset" %}">Reset Password</a></p>
