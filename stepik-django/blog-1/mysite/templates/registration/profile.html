@@ -3,19 +3,19 @@
 {% block title %}Profile Page{% endblock title %}
 
 {% block content %}
-<div>
+<div class="mb-2">
     <img src="{{ user.profile.avatar.url }} " style="cursor: pointer;"/>
 </div>
 {% if user_form.errors %}
-    <div role="alert">
-        <div>
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="alert alert-warning alert-dismissible fade show w-50 d-block" role="alert">
+
             {% for key, value in user_form.errors.items %}
             <strong>{{value}}</strong>
             {% endfor %}
-        </div>
-        <button type="button" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close">
         </button>
+      </div>
     </div>
 {% endif %}
 
@@ -23,15 +23,13 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
-            <div>
-
-                    <div>
-                        <label>Username:</label>
-                        {{user_form.username}}
-                        <hr>
-                        <label>Email:</label>
-                        {{user_form.email}}
+            <div>   
+                    {% for field in user_form %}
+                    <div class="form-floating mb-1">
+                        {{field}}
+                        <label for="field.id_for_label">{{ field.label }}</label>
                     </div>
+                    {% endfor %}
 
                 <hr>
 
@@ -43,14 +41,20 @@
                     </div>
 
                     <hr>
-                    <label>Bio:</label>
-                    {{profile_form.bio}}
+
+                    <div class="mb-1">
+                        <label for="{{profile_form.bio.id_for_label}}" class="form-label">
+                            {{ profile_form.bio.label }}:
+                        </label>
+                        {{profile_form.bio}}
+                    </div>
+
                 </div>
 
         </div>
         <br><br>
-        <button type="submit">Save Changes</button>
-        <button type="reset">Reset</button>
+        <button type="submit" class="btn btn-primary btn-lg">Save Changes</button>
+        <button type="reset" class="btn btn-primary btn-lg">Reset</button>
     </form>
 </div>
 

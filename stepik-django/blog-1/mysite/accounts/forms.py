@@ -67,10 +67,12 @@ class LoginForm(AuthenticationForm):
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100,
                                required=True,
-                               widget=forms.TextInput())
+                               widget=forms.TextInput(attrs={"class": 'form-control mb-1', "placeholder": "Username"}),
+                               label="Username")
     
     email = forms.EmailField(required=True,
-                             widget=forms.TextInput())
+                             widget=forms.TextInput(attrs={"class": "form-control mb-1", "placeholder": "E-Mail"}),
+                             label="E-Mail")
     
     class Meta:
         model = User
@@ -78,8 +80,10 @@ class UpdateUserForm(forms.ModelForm):
         
 
 class UpdateProfileForm(forms.ModelForm):
-    avatar = forms.ImageField(widget=forms.FileInput())
-    bio = forms.CharField(widget=forms.Textarea(attrs={'rows': 5}))
+    avatar = forms.ImageField(widget=forms.FileInput(attrs={"class": "form-control mb-1"}),
+                              label="Avatar")
+    bio = forms.CharField(widget=forms.Textarea(attrs={"class": "form-control mb-1", "rows": 5}),
+                          label="Bio")
     
     class Meta:
         model = Profile

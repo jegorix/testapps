@@ -1,24 +1,22 @@
-
-
-<form action="{% url "blog:post_comment" post.id %}" method="post">
+<form action="{% url 'blog:post_comment' post.id %}" method="post">
     {% csrf_token %}
-    <div class="row">
 
+    <div class="row">
         {% if user.is_authenticated %}
-        <h3>Add a new comment, {{user.username}}</h3>
+            <h3>Add a new comment, {{ user.username }}</h3>
         {% else %}
-        <h3>Add a new comment</h3>
-        <div class="col mt-2">
-            {{ form.name }}
-        </div>
-        <div class="col mt-2">
-            {{ form.email }}
-        </div>
+            <h3>Add a new comment</h3>
+            <div class="col mt-2">
+                {{ form.name }}
+            </div>
+            <div class="col mt-2">
+                {{ form.email }}
+            </div>
         {% endif %}
 
         <div class="mt-2">
             {{ form.body }}
-            <input type="submit" class="btn btn-primary mb-3" value="Add comment">
+            <input type="submit" class="btn btn-primary mb-3 mt-2" value="Add comment">
         </div>
     </div>
 </form>

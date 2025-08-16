@@ -41,12 +41,16 @@ def post_list(request, tag_slug=None):
     
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
+        
+    
+    paging = paginator.get_elided_page_range(number=page_number, on_each_side=1, on_ends=1)
     
     return render(
         request=request,
         template_name="blog/post/list.html",
         context={"posts": posts,
-                 "tag": tag}
+                 "tag": tag,
+                 "paging": paging}
     )
 
 
@@ -137,13 +141,18 @@ def post_comment(request, post_id):
     
     comment_post = request.POST.copy()
     if request.user.is_authenticated:
-        comment_post["name"] = request.user.name
+        comment_post["name"] = request.user.username
         comment_post["email"] = request.user.email
     
-    form = CommentForm(data=request.POST)
+    form = CommentForm(comment_post)
+    
     if form.is_valid():
         comment = form.save(commit=False)
         comment.post = post
+
+        # if request.user.is_authenticated:
+        #     comment.user = request.user
+            
         comment.save()
         
     return render(request=request,
