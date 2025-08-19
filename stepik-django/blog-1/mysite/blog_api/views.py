@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render
 
-from rest_framework import generics
+from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
@@ -47,6 +47,7 @@ class CustomSearchFilter(filters.SearchFilter):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = (permissions.IsAdminUser,) # strong permission
     
 
 
