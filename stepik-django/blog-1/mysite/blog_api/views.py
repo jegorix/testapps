@@ -4,10 +4,17 @@ from django.shortcuts import render
 from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from rest_framework.pagination import PageNumberPagination
 
 from blog.models import Post
 from .serializers import PostSerializer
 # Create your views here.
+
+
+class StandartResultsSetPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 10
 
 
 class PostList(generics.ListCreateAPIView):
@@ -21,9 +28,11 @@ class PostList(generics.ListCreateAPIView):
     ordering_fields = ['author_id', 'publish']
     # ordering_fields = '__all__'
     ordering = ['title']
+    pagination_class = StandartResultsSetPagination
     # def get_queryset(self):
     #    user = self.request.user
     #    return Post.objects.filter(author=user)
+    
     
 
 class CustomSearchFilter(filters.SearchFilter):
