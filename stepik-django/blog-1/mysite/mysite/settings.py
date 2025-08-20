@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'blog_api.apps.BlogApiConfig',
     'django_filters',
     'rest_framework.authtoken',
+    'drf_spectacular',
 ]
 
 REST_FRAMEWORK = {
@@ -72,11 +73,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
     
-    'DEFAULT_ATHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    )
-    
+        "rest_framework.authentication.TokenAuthentication",  # new
+
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+    # OTHER SETTINGS
 }
 
 
@@ -221,7 +231,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = str(os.getenv('GOOGLE_SECRET'))
 
 
 # 'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.BasicAuthentication' # new
+#         'rest_framework.authentication.BasicAuthentication', # new
 #         'rest_framework.authentication.SessionAuthentication',
 #         'rest_framework.authentication.TokenAuthentication',
 #     ),
