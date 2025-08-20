@@ -5,6 +5,7 @@ from rest_framework import generics, permissions
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
+from .permissions import IsAuthorOrReadOnly
 
 from blog.models import Post
 from .serializers import PostSerializer
@@ -15,6 +16,15 @@ class StandartResultsSetPagination(PageNumberPagination):
     page_size = 5
     page_size_query_param = 'page_size'
     max_page_size = 10
+    
+    
+class CustomSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        if request.query_params.get('title_only'):
+            return ['title']
+        return super().get_search_fields(view, request)
+    
+    
 
 
 class PostList(generics.ListCreateAPIView):
@@ -29,17 +39,11 @@ class PostList(generics.ListCreateAPIView):
     # ordering_fields = '__all__'
     ordering = ['title']
     pagination_class = StandartResultsSetPagination
+    permission_classes = (IsAuthorOrReadOnly,)
     # def get_queryset(self):
     #    user = self.request.user
     #    return Post.objects.filter(author=user)
     
-    
-
-class CustomSearchFilter(filters.SearchFilter):
-    def get_search_fields(self, view, request):
-        if request.query_params.get('title_only'):
-            return ['title']
-        return super().get_search_fields(view, request)
     
     
 
@@ -47,7 +51,8 @@ class CustomSearchFilter(filters.SearchFilter):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = (permissions.IsAdminUser,) # strong permission
+    # permission_classes = (permissions.IsAdminUser,) # strong permission
+    permission_classes = (IsAuthorOrReadOnly,)
     
 
 

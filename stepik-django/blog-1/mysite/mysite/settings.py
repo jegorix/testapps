@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'blog_api.apps.BlogApiConfig',
     'django_filters',
+    'rest_framework.authtoken',
 ]
 
 REST_FRAMEWORK = {
@@ -70,6 +71,11 @@ REST_FRAMEWORK = {
     
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100,
+    
+    'DEFAULT_ATHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
     
 }
 
