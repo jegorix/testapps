@@ -4,7 +4,7 @@
 
 {% for post in posts %}
 <img src="{{post.thumbnail.url}}" alt={{post.title}} width="150"/>
-<strong>{{ post.title }}</strong>
+<strong><a href="{{post.get_absolute_url}}">{{ post.title }}</a></strong>
 <p>{{ post.description }}</p>
 <small>{{ post.create }}</small>
 <hr>
@@ -12,4 +12,3 @@
 <br>
 {% endfor %}
 {% endblock content %}
-
