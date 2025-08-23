@@ -5,3 +5,6 @@ class BlogConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'apps.blog'
     verbose_name = 'Блог'
+    
+    def ready(self) -> None:
+        import apps.accounts.signals
