@@ -6,10 +6,23 @@ from django.urls import reverse
 from apps.services.utils import unique_slugify
 # Create your models here.
 
+class PostManager(models.Manager):
+    """
+    Кастомный менеджер для модели постов
+    """
+    def get_queryset(self):
+        return super().get_queryset().select_related('author', 'category').filter(status="published")
+
+
+
+
 class Post(models.Model):
     """
     Модель постов для нашего блога
     """
+    
+    objects = models.Manager()
+    custom = PostManager()
     
     STATUS_OPTION = (
         ('published', 'Опубликовано'),
