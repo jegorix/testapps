@@ -7,6 +7,7 @@ from .forms import PostCreateForm, PostUpdateForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from ..services.mixins import AuthorRequiredMixin
+
 # Create your views here.
 
 class PostListView(ListView):
