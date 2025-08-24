@@ -1,9 +1,9 @@
 from typing import Any
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post, Category
-from .forms import PostCreateForm
+from .forms import PostCreateForm, PostUpdateForm
 # Create your views here.
 
 class PostListView(ListView):
@@ -65,5 +65,25 @@ class PostCreateView(CreateView):
     
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)
+    
+    
+
+class PostUpdateView(UpdateView):
+    """
+    Представление: обновления материала на сайте
+    """
+    model = Post
+    template_name = 'blog/post_update.html'
+    context_object_name = 'post'
+    form_class = PostUpdateForm
+    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Обновление статьи {self.object.title}' 
+        return context
+    
+    def form_valid(self, form):
         form.save()
         return super().form_valid(form)
