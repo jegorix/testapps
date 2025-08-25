@@ -123,3 +123,42 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse("post_by_category", kwargs={"slug": self.slug})
     
+
+
+class Comment(MPTTModel):
+    """
+    Модель древовидных комментариев
+    """
+    STATUS_OPTION = (
+        ('pusblished', 'Опубликовано'),
+        ('draft', 'Черновик')
+        
+    )
+    
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, verbose_name='Запись', related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор комментария', related_name='comments_author')
+    content = models.TextField(verbose_name='Текст комментария', max_length=3000)
+    time_create = models.DateTimeField(verbose_name='Время создания', auto_now_add=True)
+    time_update = models.DateTimeField(verbose_name='Время обновления', auto_now=True)
+    status = models.CharField(choices=STATUS_OPTION, verbose_name='Статус поста', default='published', max_length=10)
+    parent = TreeForeignKey('self', verbose_name='Родительский комментарий', null=True, blank=True,
+                            related_name="children", on_delete=models.CASCADE)
+    
+    class MMTMeta:
+        """
+        Сортировка по вложенности
+        """
+        order_insertion_by=('-time_create', )
+        
+    class Meta:
+        """
+        Сортировка, название модели в админ панели, таблица в данными
+        """
+        ordering = ['-time_create']
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+        
+    def __str__(self):
+        return f'{self.author}:{self.content}'
+    
+    

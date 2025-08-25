@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostCreateForm(forms.ModelForm):
     """
@@ -40,3 +40,15 @@ class PostUpdateForm(PostCreateForm):
         })        
         
     
+class CommentCreateForm(forms.ModelForm):
+    """
+    Форма добавления комментариев к статьям
+    """
+    parrent = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    content = forms.CharField(label='', widget=forms.Textarea(attrs={
+        'class': 'form-control', 'rows': 5, 'cols': 30, 'placeholder': 'Комментарий'
+    }))
+    
+    class Meta:
+        model = Comment
+        fields = ('content', )

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Category
+from .models import Post, Category, Comment
 from django_mptt_admin.admin import DjangoMpttAdmin #DraggableMPTTAdmin
 # Register your models here.
 
@@ -12,8 +12,15 @@ class PostAdmin(admin.ModelAdmin):
     
 
 @admin.register(Category)
-class CategoryAdmin(DjangoMpttAdmin): # instead of DjangoMPTTAdmin
+class CategoryAdmin(DjangoMpttAdmin): # instead of DraggableMPTTAdmin
     """
     Админ-панель модели категорий
     """
     prepopulated_fields = {'slug': ('title',)}
+    
+@admin.register(Comment)
+class CommentAdminPage(DjangoMpttAdmin):
+    """
+    Админ-панель модели комментариев
+    """
+    pass
