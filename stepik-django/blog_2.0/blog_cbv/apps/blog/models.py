@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 from apps.services.utils import unique_slugify
+from taggit.managers import TaggableManager
 # Create your models here.
 
 class PostManager(models.Manager):
@@ -23,6 +24,8 @@ class Post(models.Model):
     
     objects = models.Manager()
     custom = PostManager()
+    
+    tags = TaggableManager()
     
     STATUS_OPTION = (
         ('published', 'Опубликовано'),

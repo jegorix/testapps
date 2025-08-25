@@ -9,6 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from ..services.mixins import AuthorRequiredMixin
 from django.http import HttpResponse, JsonResponse
+from taggit.models import Tag
 
 # Create your views here.
 
@@ -138,6 +139,19 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     
         
         
-        
-        
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_list.html'
+    context_object_name = 'posts'
+    paginate_by = 10
+    tag = None
     
+    def get_queryset(self) -> QuerySet[Any]:
+        self.tag = Tag.objects.get(slug=self.kwargs['tag'])
+        queryset = Post.objects.filter(tags__slug=self.tag.slug)
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Статьи по тегу: {self.tag.name}'
+        return context
