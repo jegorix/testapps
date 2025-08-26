@@ -9,6 +9,7 @@
         </div>
         <form action="{% url "post_create" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            {{ form.media }}
             {{ form.as_p }}
             <div class="d-grid gap-2 d-md-block mt-2">
                 <button type="submit" class="btn btn-dark">Добавить статью</button>

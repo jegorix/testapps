@@ -10,8 +10,8 @@
 		<div class="col-8">
 			<div class="card-body">
 				<h5>{{ post.title }}</h5>
-                <p class="card-text">{{ post.description }}</p>
-				<p class="card-text">{{ post.text }}</p>
+                <p class="card-text">{{ post.description | safe }}</p>
+				<p class="card-text">{{ post.text | safe }}</p>
 				Категория: <a href="{% url 'post_by_category' post.category.slug %}">{{ post.category.title }}</a> / Добавил: {{ post.author.username }} / <small>{{ post.time_create }}</small>
 			</div>
 		</div>
