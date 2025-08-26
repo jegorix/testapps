@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'apps.accounts.apps.AccountsConfig',
     'taggit',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,6 @@ STATICFILES_DIRS = [BASE_DIR / 'templates/js/']
 MEDIA_ROOT = (BASE_DIR / 'media')
 MEDIA_URL = '/media/'
 
+# RECAPTCHA SETTINGS
+RECAPTCHA_PUBLIC_KEY = "6LfzYbMrAAAAAIP-ruMjBH5DafdEacudJT2PnuIt"
+RECAPTCHA_PRIVATE_KEY = "6LfzYbMrAAAAAD_Soik7tcn9VmS9pfP6_7uhbpaO"
