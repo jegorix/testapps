@@ -28,6 +28,12 @@
 
     {% endif %}
 
+    <div class="rating-buttons">
+        <button class="btn btn-sm btn-primary" data-post="{{ post.id }}" data-value="1">Лайк</button>
+        <button class="btn btn-sm btn-secondary" data-post="{{ post.id }}" data-value="-1">Дизлайк</button>
+        <button class="btn btn-sm btn-secondary rating-sum">{{ post.get_sum_rating }}</button>
+    </div>
+
 </div>
 
 <div class="card border-0">
@@ -38,4 +44,9 @@
 		{% include 'blog/comments/comments_list.html' %}
 	</div>
 </div>
+
+
+<script src="{% static 'ratings.js' %}"></script>
+{% block script %}{% endblock %}
+
 {% endblock %}
