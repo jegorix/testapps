@@ -83,7 +83,10 @@ class Post(models.Model):
         super().save(*args, **kwargs)        
     
     def get_sum_rating(self):
-        return sum([rating.value for rating in self.ratings.all()])
+        # return sum([rating.value for rating in self.ratings.all()])
+        from django.db.models import Sum
+        result = self.ratings.aggregate(total=Sum('value'))
+        return result['total'] or 0
         
         
         
