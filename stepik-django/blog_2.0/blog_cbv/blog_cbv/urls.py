@@ -20,6 +20,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from apps.blog.feeds import LatestPostFeed
 
+
+handler_404 = 'apps.blog.views.tr_handler_404'
+handler_500 = 'apps.blog.views.tr_handler_500'
+handler_403 = 'apps.blog.views.tr_handler_403'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('feeds/latest/', LatestPostFeed(), name="latest_post_feed"),
