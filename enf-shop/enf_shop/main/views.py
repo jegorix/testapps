@@ -29,7 +29,7 @@ class CatalogView(TemplateView):
         'color': lambda queryset, value: queryset.filter(color__iexact=value),
         'min_price': lambda queryset, value: queryset.filter(price__gte=value),
         'max_price': lambda queryset, value: queryset.filter(price__lte=value),
-        'size': lambda queryset, value: queryset.filter(product_size__size__name=value),
+        'size': lambda queryset, value: queryset.filter(product_sizes__size__name=value),
     }
     
     def get_context_data(self, **kwargs):
@@ -51,7 +51,7 @@ class CatalogView(TemplateView):
             )
          
         filter_params = {}
-        for param, filter_func in FILTER_MAPPING.items():
+        for param, filter_func in self.FILTER_MAPPING.items():
             value = self.request.GET.get(param)
             if value:
                 products = filter_func(products, value)
@@ -114,8 +114,8 @@ class ProductDetailView(DetailView):
         return context
     
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
         self.object = self.get_object()
+        context = self.get_context_data(**kwargs)
         if request.headers.get('HX-Request'):
             return TemplateResponse(request, 'main/product_detail.html', context)
         
