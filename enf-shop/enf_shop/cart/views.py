@@ -169,7 +169,7 @@ class ClearCartView(CartMixin, View):
         request.session.modified = True
         
         if request.headers.get('HX-Request'):
-            return TemplateResponse(request, 'cart/cart_empty.html', {
+            return TemplateResponse(request, 'cart/cart_empty.html', context={
                 'cart': cart
             })
             
@@ -177,3 +177,15 @@ class ClearCartView(CartMixin, View):
             'success': True,
             'message': 'Cart cleared',
         })
+
+class CartSummaryView(CartMixin, View):
+    def get(self, request):
+        cart = self.get_cart(request)
+        context = {
+            'cart': cart,
+            'cart_items': cart.items.select_related(
+                'product',
+                'product_size__size',
+            ).order_by('-added_at')
+        }
+        return TemplateResponse(request, 'cart/cart_summary.html', context=context)
