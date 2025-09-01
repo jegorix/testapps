@@ -28,6 +28,19 @@ class CartMixin:
         return cart
     
     
+class CartModalView(CartMixin, View):
+    def get(self, request):
+        cart = self.get_cart(request)
+        context = {
+            'cart': cart,
+            'cart_items': cart.items.select_related(
+                'product',
+                'product_size__size',
+            ).order_by('-added_at')
+        }
+        return TemplateResponse(request, 'cart/cart_modal.html', context)
+    
+    
 class AddToCartView(CartMixin, View):
     @transaction.atomic
     def post(self, request, slug):

@@ -1,7 +1,7 @@
 from django import forms
 from .models import CartItem
 
-class AddToCardForm(forms.form):
+class AddToCardForm(forms.Form):
     size_id = forms.IntegerField(required=False)
     quantity = forms.IntegerField(min_value=1, initial=1)
     
@@ -13,7 +13,7 @@ class AddToCardForm(forms.form):
             sizes = product.product_sizes.filter(stock__gt=0)
             if sizes.exists():
                 self.fields['size_id'] = forms.ChoiceField(
-                    choices=[(ps.id, ps.size.name) for ps in sizes],
+                    choices=[(ps.id, ps.size.name) for ps in sizes], 
                     required=True,
                     initial=sizes.first().id
                 )
