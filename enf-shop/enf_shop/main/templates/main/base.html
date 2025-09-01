@@ -254,8 +254,38 @@
 
     <script>
 
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const menuToggle = document.getElementById('menuToggle');
+            const closeMenu = document.getElementById('closeMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
 
-        // Cart functionality
+            function openMobileMenu() {
+                mobileMenu.classList.add('open');
+                overlay.classList.add('active');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('open');
+                overlay.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', openMobileMenu);
+            closeMenu.addEventListener('click', closeMobileMenu);
+            overlay.addEventListener('click', closeMobileMenu);
+
+            // Close mobile menu after navigation
+            document.addEventListener('htmx:afterRequest', function() {
+                closeMobileMenu();
+            });
+
+
+            // Cart functionality
             const desktopCart = document.getElementById('desktopCart');
             const mobileCart = document.getElementById('mobileCart');
             const mobileCartHeader = document.getElementById('mobileCartHeader');
@@ -292,37 +322,6 @@
                         openCart();
                     });
                 }
-            });
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const menuToggle = document.getElementById('menuToggle');
-            const closeMenu = document.getElementById('closeMenu');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const overlay = document.getElementById('overlay');
-    
-            function openMobileMenu() {
-                mobileMenu.classList.add('open');
-                overlay.classList.add('active');
-                menuToggle.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-    
-            function closeMobileMenu() {
-                mobileMenu.classList.remove('open');
-                overlay.classList.remove('active');
-                menuToggle.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-    
-            menuToggle.addEventListener('click', openMobileMenu);
-            closeMenu.addEventListener('click', closeMobileMenu);
-            overlay.addEventListener('click', closeMobileMenu);
-    
-            // Close mobile menu after navigation
-            document.addEventListener('htmx:afterRequest', function() {
-                closeMobileMenu();
             });
     
         

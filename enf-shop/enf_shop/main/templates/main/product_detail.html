@@ -97,7 +97,7 @@
                         {% if not product.product_sizes.all %}disabled{% endif %}>
                     ADD TO CART
                 </button>
-                
+
                 <button class="w-full border border-gray-300 py-3 px-6 text-sm font-medium hover:border-gray-900 transition-colors">
                     ADD TO WISHLIST
                 </button>
@@ -170,8 +170,29 @@
 </style>
 
 <script>
+    let selectedSize = null;
+    let selectedSizeId = null;
 
+    function changeMainImage(src) {
+        const mainImg = document.querySelector('.aspect-square img');
+        if (mainImg) {
+            mainImg.src = src;
+        }
+    }
 
+    function updateSelectedSize() {
+        const sizeRadios = document.querySelectorAll('.size-radio');
+        const checkedRadio = Array.from(sizeRadios).find(radio => radio.checked && !radio.disabled);
+        if (checkedRadio) {
+            selectedSize = checkedRadio.dataset.size;
+            selectedSizeId = checkedRadio.value;
+            console.log('Updated Selected Size:', selectedSize, 'ID:', selectedSizeId);
+        } else {
+            selectedSize = null;
+            selectedSizeId = null;
+            console.log('No valid size selected');
+        }
+    }
 
     function addToCart() {
         const productSlug = '{{ product.slug }}';
@@ -219,31 +240,6 @@
         });
     }
 
-
-    let selectedSize = null;
-    let selectedSizeId = null;
-
-    function changeMainImage(src) {
-        const mainImg = document.querySelector('.aspect-square img');
-        if (mainImg) {
-            mainImg.src = src;
-        }
-    }
-
-    function updateSelectedSize() {
-        const sizeRadios = document.querySelectorAll('.size-radio');
-        const checkedRadio = Array.from(sizeRadios).find(radio => radio.checked && !radio.disabled);
-        if (checkedRadio) {
-            selectedSize = checkedRadio.dataset.size;
-            selectedSizeId = checkedRadio.value;
-            console.log('Updated Selected Size:', selectedSize, 'ID:', selectedSizeId);
-        } else {
-            selectedSize = null;
-            selectedSizeId = null;
-            console.log('No valid size selected');
-        }
-    }
-    
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -258,7 +254,7 @@
         }
         return cookieValue;
     }
-    
+
     function showNotification(message) {
         const notification = document.createElement('div');
         notification.className = 'fixed top-20 right-4 bg-black text-white px-6 py-3 rounded shadow-lg z-50 transform translate-x-full transition-transform duration-300';
@@ -287,8 +283,7 @@
             showNotification('No sizes available');
             return;
         }
-
-        const availableRadios = Array.from(sizeRadios).filter(radio => !radio.disabled);
+    const availableRadios = Array.from(sizeRadios).filter(radio => !radio.disabled);
         console.log('Available Size Radios:', availableRadios.length);
 
         if (availableRadios.length === 0) {
@@ -338,4 +333,3 @@
             this.style.transform = 'translateY(0)';
         });
     });
-</script>
