@@ -148,11 +148,11 @@ class RemoveCartItemView(CartMixin, View):
             cart_item = cart.items.get(id=item_id)
             cart_item.delete()
             
-            request.session['cart_id'] = cart
+            request.session['cart_id'] = cart.id
             request.session.modified = True
       
             context = {
-                'cart': cart,
+                'cart': cart, 
                 'cart_items': cart.items.select_related(
                     'product',
                     'product_size__size',

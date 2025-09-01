@@ -26,7 +26,7 @@ class Cart(models.Model):
             product=product, 
             product_size=product_size,
             defaults={'quantity': quantity}
-        )
+        ) 
         
         if not created:
             cart_item.quantity += quantity
