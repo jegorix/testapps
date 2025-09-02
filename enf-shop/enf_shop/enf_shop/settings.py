@@ -146,3 +146,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Setting up sessions & cookie
 SESSION_COOKIE_AGE = 86400
 SESSION_SAVE_EVERY_REQUEST = True  
+
+# SET THAT WE WILL USE SUCH USER MODEL IN PROJECT
+AUTH_USER_MODEL = 'users.CustomUser'
