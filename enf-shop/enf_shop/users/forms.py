@@ -111,3 +111,7 @@ class CustomUserUpdateForm(forms.ModelForm):
                     
         return cleaned_data
              
+    # Метод clean() здесь делает:
+    # Сохраняет email если пустой - подставляет текущий email пользователя
+    # Защита от XSS - удаляет HTML-теги из всех полей (кроме имени и фамилии)
+    # Вызывает базовую валидацию - через super().clean()
