@@ -20,7 +20,7 @@ def register(request):
             return redirect('main:index')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'user/register.html', {'form': form})  
+    return render(request, 'users/register.html', {'form': form})  
 
 
 def login_view(request):
@@ -30,10 +30,10 @@ def login_view(request):
             user = form.get_user()
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('main:index')
-        else:
-            form = CustomUserLoginForm()
-        return render(request, 'user/login.html', context={'form': form})
-    
+    else:
+        form = CustomUserLoginForm()
+    return render(request, 'users/login.html', context={'form': form})
+
     
 @login_required(login_url='/users/login')
 def profile_view(request):
@@ -69,7 +69,7 @@ def edit_account_details(request):
     
 @login_required(login_url='/users/login')
 def update_account_details(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         form = CustomUserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             user = form.save(commit=False)
@@ -78,16 +78,12 @@ def update_account_details(request):
             updated_user = CustomUser.objects.get(id=user.id)
             request.user = updated_user
             if request.headers.get('HX-Request'):
-                return TemplateResponse(request, 'users/partials/account_details.html', context={'updated_user': updated_user})
-            return TemplateResponse(request, 'users/partials/account_details.html', context={'updated_user': user})
+                return TemplateResponse(request, 'users/partials/account_details.html', {'user': updated_user})
+            return TemplateResponse(request, 'users/partials/account_details.html', {'user': updated_user})
         else:
-           return TemplateResponse(request, 'users/partials/edit_account_details.html', context={
-               'user': request.user,
-               'form': form})
-           
-    if request.headers.get("HX-Request"):
-        return HttpResponse(headers={'HX-Redirect': reverse('users:profile')})
-    
+            return TemplateResponse(request, 'users/partials/edit_account_details.html', {'user': request.user, 'form': form})
+    if request.headers.get('HX-Request'):
+        return HttpResponse(headers={'HX-Redirect': reverse('user:profile')})
     return redirect('users:profile')
 
 
