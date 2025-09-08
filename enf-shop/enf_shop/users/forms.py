@@ -49,7 +49,7 @@ class CustomUserLoginForm(AuthenticationForm):
             if self.user_cache is None:
                 raise forms.ValidationError('Invalida email or password')
             
-            elif not self.user_cache.is_active():
+            elif not self.user_cache.is_active:
                 raise forms.ValidationError('This account is inactive')
             
         return self.cleaned_data

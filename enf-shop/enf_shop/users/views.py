@@ -65,7 +65,7 @@ def account_details(request):
 def edit_account_details(request):
     form = CustomUserUpdateForm(instance=request.user)
     return TemplateResponse(request, 'users/partials/edit_account_details.html', context=
-                            {'user': request.user})
+                            {'user': request.user, 'form': form})
     
 @login_required(login_url='/users/login')
 def update_account_details(request):
