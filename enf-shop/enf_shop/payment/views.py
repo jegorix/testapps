@@ -1,5 +1,92 @@
 from django.shortcuts import render
-
+import stripe
+import requests
+from django.conf import settings
+from django.shortcuts import redirect, get_object_or_404, render
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
+from django.template.response import TemplateResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from orders.models import Order
+from cart.views import CartMixin
+from decimal import Decimal
+import json
+import hashlib
+import base64
 # Create your views here.
+
 # stripe login
 # stripe listen --forward-to localhost:8000/payment/stripe/webhook/
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe_endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+
+# method for creation payment session
+def create_stripe_checkout_session(order, request):
+    cart = CartMixin.get_cart(request)
+    line_itmes = []
+    for item in cart.itmes.select_related('product', 'product_size'):
+        line_itmes.append({
+            'price_data': {
+                'current': 'usd',
+                
+                'product_data': {
+                    'name': f'{item.product.name} - {item.product_size.size.name}',
+                } ,
+                
+                'unit_amount': int(item.product.size * 100),
+            },
+            
+            'quantity': item.quantity,
+        })
+    
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_itmes=line_itmes, 
+            mode='payment',
+            success_url=request.build_absolute_uri('/payment/stripe/success/') + '?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url=request.build_absolute_uri('/payment/stripe/cancel/') + f"order_id={order.id}",
+            metadata={
+                'order_id': order.id,
+            }
+        )
+        order.stripe_payment_intend_id = checkout_session.payment_intent
+        order.payment_provider = 'stripe'
+        order.save()
+        return checkout_session
+    
+    except Exception as e:
+        raise 
+    
+    
+@csrf_exempt
+@require_POST
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    event = None
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, stripe_endpoint_secret
+        )
+    except ValueError as e:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        return HttpResponse(status=400)
+    
+    if event["type"] == 'checkout.session.completed ':
+        session = event["data"]["object"]
+        order_id = session['metadata'].get('order_id')
+        
+        try:
+            order = Order.objects.get(id=order_id)
+            order.status =  'processing'
+            order.stripe_payment_intend_id = session.get('payment_intent')
+            order.save()
+            
+        except Order.DoesNotExist:
+            return HttpResponse(status=400)
+        
+    return HttpResponse(status=200, )
