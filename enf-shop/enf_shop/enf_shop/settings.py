@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'cart',
     'users',
     'orders',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +151,8 @@ SESSION_SAVE_EVERY_REQUEST = True
 
 # SET THAT WE WILL USE SUCH USER MODEL IN PROJECT
 AUTH_USER_MODEL = 'users.CustomUser'
+
+
+#STRIPE SETTINGS
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
