@@ -89,4 +89,38 @@ def stripe_webhook(request):
         except Order.DoesNotExist:
             return HttpResponse(status=400)
         
-    return HttpResponse(status=200, )
+    return HttpResponse(status=200)
+
+
+def stripe_success(request):
+    session_id = request.GET.get('session_id')
+    if session_id:
+        try:
+            session = stripe.checkout.Session.retrieve(session_id)
+            order_id = session.metadata.get('order_id')
+            order = get_object_or_404(Order, id=order_id)
+            
+            cart = CartMixin().get_cart(request)
+            cart.clear()
+            
+            context = {'order': order}
+            if request.headers.get('HX-Request'):
+                return TemplateResponse(request, 'payment/stripe_success_content.html', context)
+            return render(request, 'payment/stripe_success.html', context)
+        
+        except Exception as e:
+            raise
+    return redirect('main:index')
+
+def stripe_cancel(request):
+    order_id = request.GET.get('order_id')
+    if order_id:
+        order = get_object_or_404(Order, id=order_id)
+        order.status = 'cancelled'
+        order.save()
+        context = {'order': order}
+        if request.headers.get('HX-Request'):
+            return TemplateResponse(request, 'payment/stripe_cancel_content.html', context)
+        return render(request, 'payment/stripe_cancel.html', context)
+    return redirect('orders:ckeckout')
+        
