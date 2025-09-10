@@ -24,9 +24,9 @@ stripe_endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
 # method for creation payment session
 def create_stripe_checkout_session(order, request):
     cart = CartMixin.get_cart(request)
-    line_itmes = []
+    line_items = []
     for item in cart.itmes.select_related('product', 'product_size'):
-        line_itmes.append({
+        line_items.append({
             'price_data': {
                 'current': 'usd',
                 
@@ -43,7 +43,7 @@ def create_stripe_checkout_session(order, request):
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            line_itmes=line_itmes, 
+            line_itmes=line_items, 
             mode='payment',
             success_url=request.build_absolute_uri('/payment/stripe/success/') + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=request.build_absolute_uri('/payment/stripe/cancel/') + f"order_id={order.id}",
