@@ -32,7 +32,7 @@ class CheckoutView(CartMixin, View):
         context = {
             'form': form,
             'cart': cart,
-            'cart_items': cart.items.select_related('product', 'product_size___size').order_by("_added_at"),
+            'cart_items': cart.items.select_related('product', 'product_size__size').order_by("-added_at"),
             'total_price': total_price,
         }
         
@@ -55,14 +55,14 @@ class CheckoutView(CartMixin, View):
             context = {
                 'form': OrderForm(user=request.user),
                 'cart': cart,
-                'cart_items': cart.items.select_related('product', 'product_size__size').order_by("_added_at"),
+                'cart_items': cart.items.select_related('product', 'product_size__size').order_by("-added_at"),
                 'total_price': cart.subtotal,
                 'error_message': "Please select a valid payment provider (Stripe or Heleket)",
             }
             
             if request.headers.get("HX-Request"):
-                return TemplateResponse(request, 'orders/checkout_content', context)
-            return redirect(request, 'orders/checkout', context)
+                return TemplateResponse(request, 'orders/checkout_content.html', context)
+            return redirect(request, 'orders/checkout.html', context)
         
         total_price = cart.subtotal
         form_data =  request.POST.copy()
@@ -114,23 +114,23 @@ class CheckoutView(CartMixin, View):
                 context = {
                     'form': form,
                     'cart': cart,
-                    'cart_items': cart.items.select_related('product', 'product_size___size').order_by("_added_at"),
+                    'cart_items': cart.items.select_related('product', 'product_size___size').order_by("-added_at"),
                     'total_price': total_price,
                     'error_message': f'Payment processing error: {str(e)}' 
                 }
                 if request.headers.get("HX-Request"):
-                    return TemplateResponse(request, 'orders/checkout_content', context)
-                return redirect(request, 'orders/checkout', context)
+                    return TemplateResponse(request, 'orders/checkout_content.html', context)
+                return redirect(request, 'orders/checkout.html', context)
             
         else:
             context = {
                 'form': form,
                 'cart': cart,
-                'cart_items': cart.items.select_related('product', 'product_size___size').order_by("_added_at"),
+                'cart_items': cart.items.select_related('product', 'product_size___size').order_by("-added_at"),
                 'total_price': total_price,
                 'error_message': 'Please correct the errors in the form.'  
             }
             if request.headers.get("HX-Request"):
-                return TemplateResponse(request, 'orders/checkout_content', context)
-            return redirect(request, 'orders/checkout', context)
+                return TemplateResponse(request, 'orders/checkout_content.html', context)
+            return redirect(request, 'orders/checkout.html', context)
              
