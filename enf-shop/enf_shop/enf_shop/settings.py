@@ -34,8 +34,8 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'novac03.ru', 'www.novac03.ru']
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
-    'http://novac03.ru:8000',
-    'http://www.novac03.ru:8000',
+    'https://novac03.ru:8000',
+    'https://www.novac03.ru:8000',
      
 ]
 
