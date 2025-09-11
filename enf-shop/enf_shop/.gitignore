@@ -1,0 +1,16 @@
+venv/
+.pylintrc
+__pycache__/
+
+.vscode
+.idea
+.env
+**/.DS_Store
+.DS_Store
+.css
+.js
+
+
+db.sqlite3
+media/
+products/
