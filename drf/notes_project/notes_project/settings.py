@@ -44,7 +44,7 @@ THIRD_PATY_APPS = [ # from libraries
 
 # list of local apps
 LOCAL_APPS = [ 
-    
+    'apps.notes',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PATY_APPS + LOCAL_APPS
