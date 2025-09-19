@@ -76,7 +76,7 @@ def stripe_webhook(request):
         session = event['data']['object']
         order_id = session['metadata'].get('order_id')
         try:
-            order = Order.object.get(id=order_id)
+            order = Order.objects.get(id=order_id)
             order.status = 'processing'
             order.stripe_payment_intent_id = session.get('payment_intent')
             order.save()
