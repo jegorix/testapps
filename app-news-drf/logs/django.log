@@ -1,1 +1,124 @@
 INFO 2025-09-19 15:25:40,252 autoreload 90216 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 17:39:36,214 autoreload 40542 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 17:41:47,337 autoreload 40542 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/config/settings.py changed, reloading.
+INFO 2025-09-20 17:49:53,376 autoreload 43903 8371577024 Watching for file changes with StatReloader
+WARNING 2025-09-20 17:50:14,076 log 43903 6191083520 Method Not Allowed: /api/v1/auth/register/
+WARNING 2025-09-20 17:50:14,077 basehttp 43903 6191083520 "GET /api/v1/auth/register/ HTTP/1.1" 405 40
+ERROR 2025-09-20 17:50:20,809 log 43903 6191083520 Internal Server Error: /api/v1/auth/register/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 194, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/views.py", line 32, in create
+    'user': UserProfileSerializer(user).data,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 573, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/serializers.py", line 88, in get_posts_count
+    return obj.posts.count()
+           ^^^^^^^^^
+AttributeError: 'User' object has no attribute 'posts'
+ERROR 2025-09-20 17:50:20,814 basehttp 43903 6191083520 "POST /api/v1/auth/register/ HTTP/1.1" 500 140087
+INFO 2025-09-20 17:53:54,693 autoreload 43903 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/serializers.py changed, reloading.
+INFO 2025-09-20 17:53:56,185 autoreload 45184 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 17:54:43,341 basehttp 45184 6190903296 "POST /api/v1/auth/register/ HTTP/1.1" 201 766
+INFO 2025-09-20 18:00:55,506 basehttp 45184 6207729664 "POST /api/v1/auth/login/ HTTP/1.1" 200 761
+INFO 2025-09-20 18:03:54,504 basehttp 45184 6224556032 "GET /api/v1/auth/profile/ HTTP/1.1" 200 228
+INFO 2025-09-20 18:09:56,437 autoreload 45184 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/admin.py changed, reloading.
+INFO 2025-09-20 18:09:57,060 autoreload 50134 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 18:17:11,512 autoreload 50134 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/admin.py changed, reloading.
+INFO 2025-09-20 18:17:12,455 autoreload 52341 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 18:17:32,923 autoreload 52341 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/admin.py changed, reloading.
+INFO 2025-09-20 18:17:33,320 autoreload 52463 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 18:17:46,803 autoreload 52463 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/admin.py changed, reloading.
+INFO 2025-09-20 18:17:47,191 autoreload 52544 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-20 18:21:42,297 autoreload 53778 8371577024 Watching for file changes with StatReloader
+WARNING 2025-09-20 18:21:51,922 log 53778 6138966016 Not Found: /
+WARNING 2025-09-20 18:21:51,924 basehttp 53778 6138966016 "GET / HTTP/1.1" 404 2651
+WARNING 2025-09-20 18:21:52,163 log 53778 6155792384 Not Found: /apple-touch-icon-precomposed.png
+WARNING 2025-09-20 18:21:52,166 log 53778 6172618752 Not Found: /apple-touch-icon.png
+WARNING 2025-09-20 18:21:52,168 log 53778 6189445120 Not Found: /favicon.ico
+WARNING 2025-09-20 18:21:52,169 basehttp 53778 6172618752 "GET /apple-touch-icon.png HTTP/1.1" 404 2729
+WARNING 2025-09-20 18:21:52,169 basehttp 53778 6155792384 "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 2765
+WARNING 2025-09-20 18:21:52,169 basehttp 53778 6189445120 "GET /favicon.ico HTTP/1.1" 404 2702
+WARNING 2025-09-20 18:21:52,526 log 53778 6138966016 Not Found: /favicon.ico
+WARNING 2025-09-20 18:21:52,528 basehttp 53778 6138966016 "GET /favicon.ico HTTP/1.1" 404 2702
+INFO 2025-09-20 18:21:56,695 basehttp 53778 6138966016 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-09-20 18:21:56,736 basehttp 53778 6206271488 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4170
+INFO 2025-09-20 18:21:56,751 basehttp 53778 6138966016 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-09-20 18:21:56,752 basehttp 53778 6223097856 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-09-20 18:21:56,774 basehttp 53778 6223097856 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2025-09-20 18:21:56,776 basehttp 53778 6138966016 "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+INFO 2025-09-20 18:21:56,778 basehttp 53778 6206271488 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-09-20 18:21:56,783 basehttp 53778 6239924224 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-09-20 18:21:56,784 basehttp 53778 6223097856 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+INFO 2025-09-20 18:22:05,868 basehttp 53778 6138966016 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-09-20 18:22:05,906 basehttp 53778 6206271488 "GET /admin/ HTTP/1.1" 200 6597
+INFO 2025-09-20 18:22:05,945 basehttp 53778 6239924224 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-09-20 18:22:05,976 basehttp 53778 6138966016 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-09-20 18:22:05,977 basehttp 53778 6223097856 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-09-20 18:22:19,055 basehttp 53778 6239924224 "GET /admin/accounts/user/ HTTP/1.1" 200 13341
+INFO 2025-09-20 18:22:19,122 basehttp 53778 6138966016 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-09-20 18:22:19,126 basehttp 53778 6239924224 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-09-20 18:22:19,127 basehttp 53778 6256750592 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-09-20 18:22:19,128 basehttp 53778 6273576960 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-09-20 18:22:19,130 basehttp 53778 6138966016 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-09-20 18:22:19,130 basehttp 53778 6239924224 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-09-20 18:22:19,130 basehttp 53778 6256750592 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-09-20 18:22:19,131 basehttp 53778 6273576960 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-09-20 18:22:19,132 basehttp 53778 6206271488 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-09-20 18:22:19,134 basehttp 53778 6138966016 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-09-20 18:22:19,138 basehttp 53778 6239924224 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-09-20 18:22:19,144 basehttp 53778 6256750592 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-09-20 18:22:19,149 basehttp 53778 6223097856 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-20 18:22:19,225 basehttp 53778 6273576960 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-09-20 18:22:19,227 basehttp 53778 6206271488 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+INFO 2025-09-20 18:22:19,238 basehttp 53778 6138966016 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-09-20 18:22:32,896 basehttp 53778 6256750592 "GET /admin/accounts/user/3/change/ HTTP/1.1" 200 23945
+INFO 2025-09-20 18:22:32,933 basehttp 53778 6223097856 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-09-20 18:22:32,936 basehttp 53778 6206271488 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-09-20 18:22:32,958 basehttp 53778 6138966016 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-09-20 18:22:32,960 basehttp 53778 6239924224 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-09-20 18:22:32,962 basehttp 53778 6206271488 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-09-20 18:22:32,962 basehttp 53778 6256750592 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15845
+INFO 2025-09-20 18:22:32,962 basehttp 53778 6223097856 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-09-20 18:22:32,963 basehttp 53778 6138966016 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+INFO 2025-09-20 18:22:32,974 basehttp 53778 6273576960 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-09-20 18:22:33,042 basehttp 53778 6239924224 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-09-20 18:22:33,047 basehttp 53778 6223097856 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-09-20 18:22:33,049 basehttp 53778 6256750592 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
