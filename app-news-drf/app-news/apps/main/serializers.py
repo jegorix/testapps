@@ -29,7 +29,7 @@ class PostListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ['id', 'title', 'slug', 'content', 'image', 'category',
-                  'author', 'status', 'created_at', 'updated_at',
+                  'author', 'comments', 'status', 'created_at', 'updated_at',
                   'views_count', 'comments_count'] 
         
     def to_representation(self, instance):
@@ -43,13 +43,15 @@ class PostDetailSerializer(serializers.ModelSerializer):
     """Serializer for detail post's info"""
     author_info = serializers.SerializerMethodField()
     category_info = serializers.SerializerMethodField()
-    comment_count = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
     
     class Meta:
         model = Post
-        fields = ['id', 'title', 'slug', 'content', 'image', 'category',
-                  'author', 'status', 'created_at', 'updated_at',
-                  'views_count', 'comments_count'] 
+        fields = [
+            'id', 'title', 'slug', 'content', 'image', 'category',
+            'category_info', 'author', 'author_info', 'status',
+            'created_at', 'updated_at', 'views_count', 'comments_count'
+        ]
         
         read_only_fields = ['slug', 'author', 'views_count']
         
@@ -76,7 +78,7 @@ class PostCreateUpdateSerializer(serializers.ModelSerializer):
     """Serializer for updating and creating posts"""
     
     class Meta:
-        models = Post
+        model = Post
         fields = ['title', 'content', 'image', 'category', 'status'] 
         
     def create(self, validated_data):

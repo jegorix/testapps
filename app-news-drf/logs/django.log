@@ -122,3 +122,322 @@ INFO 2025-09-20 18:22:32,974 basehttp 53778 6273576960 "GET /admin/jsi18n/ HTTP/
 INFO 2025-09-20 18:22:33,042 basehttp 53778 6239924224 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
 INFO 2025-09-20 18:22:33,047 basehttp 53778 6223097856 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
 INFO 2025-09-20 18:22:33,049 basehttp 53778 6256750592 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-09-21 11:15:45,534 autoreload 85416 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:17:59,258 basehttp 85416 6137933824 "GET /api/v1/posts/categories/ HTTP/1.1" 200 52
+WARNING 2025-09-21 11:21:34,445 log 85416 6154760192 Unauthorized: /api/v1/posts/categories/
+WARNING 2025-09-21 11:21:34,446 basehttp 85416 6154760192 "POST /api/v1/posts/categories/ HTTP/1.1" 401 172
+INFO 2025-09-21 11:24:13,928 basehttp 85416 6171586560 "POST /api/v1/auth/login/ HTTP/1.1" 200 761
+INFO 2025-09-21 11:27:35,163 basehttp 85416 6188412928 "POST /api/v1/posts/categories/ HTTP/1.1" 201 158
+ERROR 2025-09-21 11:29:43,464 log 85416 6205239296 Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 497, in to_internal_value
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 380, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1061, in get_fields
+    assert hasattr(self.Meta, 'model'), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Class PostCreateUpdateSerializer missing "Meta.model" attribute
+ERROR 2025-09-21 11:29:43,469 basehttp 85416 6205239296 "POST /api/v1/posts/ HTTP/1.1" 500 145423
+INFO 2025-09-21 11:32:13,029 autoreload 85416 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:32:13,750 autoreload 90391 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:32:39,110 basehttp 90391 6205616128 "POST /api/v1/posts/ HTTP/1.1" 201 230
+ERROR 2025-09-21 11:33:52,834 log 90391 6222442496 Internal Server Error: /api/v1/posts/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py", line 36, in to_representation
+    data = super().to_representation(instance)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 525, in to_representation
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'comments' was declared on serializer PostListSerializer, but has not been included in the 'fields' option.
+ERROR 2025-09-21 11:33:52,840 basehttp 90391 6222442496 "GET /api/v1/posts/ HTTP/1.1" 500 165661
+INFO 2025-09-21 11:35:05,820 autoreload 90391 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:35:06,714 autoreload 91308 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:35:26,249 basehttp 91308 6197047296 "GET /api/v1/posts/ HTTP/1.1" 200 458
+ERROR 2025-09-21 11:37:44,640 log 91308 6213873664 Internal Server Error: /api/v1/posts/my-first-blog-post/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 286, in get
+    return self.retrieve(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/views.py", line 90, in retrieve
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 573, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 525, in to_representation
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'comment_count' was declared on serializer PostDetailSerializer, but has not been included in the 'fields' option.
+ERROR 2025-09-21 11:37:44,653 basehttp 91308 6213873664 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 500 157657
+INFO 2025-09-21 11:38:05,336 autoreload 91308 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:38:05,956 autoreload 92297 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:40:10,222 autoreload 92297 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:40:10,665 autoreload 92957 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:44:02,367 autoreload 92957 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:44:02,995 autoreload 94169 8371577024 Watching for file changes with StatReloader
+ERROR 2025-09-21 11:44:30,483 log 94169 6202568704 Internal Server Error: /api/v1/posts/my-first-blog-post/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 286, in get
+    return self.retrieve(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/views.py", line 90, in retrieve
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 573, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 525, in to_representation
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'author_info' was declared on serializer PostDetailSerializer, but has not been included in the 'fields' option.
+ERROR 2025-09-21 11:44:30,487 basehttp 94169 6202568704 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 500 157628
+INFO 2025-09-21 11:44:58,145 autoreload 94169 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:44:58,712 autoreload 94456 8371577024 Watching for file changes with StatReloader
+ERROR 2025-09-21 11:45:00,760 log 94456 6168309760 Internal Server Error: /api/v1/posts/my-first-blog-post/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 286, in get
+    return self.retrieve(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/views.py", line 90, in retrieve
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 573, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 525, in to_representation
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 386, in _readable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1081, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1177, in get_field_names
+    assert field_name in fields, (
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: The field 'category_info' was declared on serializer PostDetailSerializer, but has not been included in the 'fields' option.
+ERROR 2025-09-21 11:45:00,762 basehttp 94456 6168309760 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 500 157686
+INFO 2025-09-21 11:45:21,343 autoreload 94456 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:45:22,022 autoreload 94580 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:45:23,437 basehttp 94580 6125858816 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 200 521
+INFO 2025-09-21 11:46:17,355 autoreload 94580 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/main/serializers.py changed, reloading.
+INFO 2025-09-21 11:46:18,541 autoreload 94889 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-21 11:46:22,246 basehttp 94889 6133313536 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 200 521
+INFO 2025-09-21 11:47:59,481 basehttp 94889 6150139904 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 200 521
