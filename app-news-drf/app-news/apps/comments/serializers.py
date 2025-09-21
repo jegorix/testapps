@@ -38,7 +38,7 @@ class CommentCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Post not found'
             )
-            return value
+        return value
         
     def validate_parent(self, value):
         if value and value.post != self.initial_data.get('post'):
