@@ -108,7 +108,7 @@ def comment_replies(request, comment_id):
     
     serializer = CommentSerializer(replies, many=True, context={'request': request})
     return Response({
-        'parent_comment': CommentSerializer(parent_comment, context={'request': request}),
+        'parent_comment': CommentSerializer(parent_comment, context={'request': request}).data,
         'replies': serializer.data,
         'replies_count': replies.count()
     })

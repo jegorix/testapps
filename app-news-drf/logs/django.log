@@ -441,3 +441,447 @@ INFO 2025-09-21 11:46:17,355 autoreload 94580 8371577024 /Users/macbook/PycharmP
 INFO 2025-09-21 11:46:18,541 autoreload 94889 8371577024 Watching for file changes with StatReloader
 INFO 2025-09-21 11:46:22,246 basehttp 94889 6133313536 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 200 521
 INFO 2025-09-21 11:47:59,481 basehttp 94889 6150139904 "GET /api/v1/posts/my-first-blog-post/ HTTP/1.1" 200 521
+INFO 2025-09-22 06:41:55,501 autoreload 65290 8371577024 Watching for file changes with StatReloader
+WARNING 2025-09-22 06:42:56,982 log 65290 6202060800 Unauthorized: /api/v1/comments/
+WARNING 2025-09-22 06:42:56,985 basehttp 65290 6202060800 "POST /api/v1/comments/ HTTP/1.1" 401 172
+ERROR 2025-09-22 06:45:07,741 log 65290 6218887168 Internal Server Error: /api/v1/auth/login/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "comments" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "comments" WHERE "comments...
+                                          ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/views.py", line 53, in post
+    'user': UserProfileSerializer(user).data,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 573, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/fields.py", line 1870, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/accounts/serializers.py", line 98, in get_comments_count
+    return obj.comments.count()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/query.py", line 604, in count
+    return self.query.get_count(using=self.db)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/query.py", line 644, in get_count
+    return obj.get_aggregation(using, {"__count": Count("*")})["__count"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/query.py", line 626, in get_aggregation
+    result = compiler.execute_sql(SINGLE)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "comments" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "comments" WHERE "comments...
+                                          ^
+
+ERROR 2025-09-22 06:45:07,751 basehttp 65290 6218887168 "POST /api/v1/auth/login/ HTTP/1.1" 500 197667
+INFO 2025-09-22 06:46:09,034 autoreload 66686 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-22 06:46:13,261 basehttp 66686 6124253184 "POST /api/v1/auth/login/ HTTP/1.1" 200 761
+ERROR 2025-09-22 06:49:50,411 log 66686 6141079552 Internal Server Error: /api/v1/comments/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 497, in to_internal_value
+    for field in fields:
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 380, in _writable_fields
+    for field in self.fields.values():
+                 ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/utils/functional.py", line 47, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+                                         ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 374, in fields
+    for key, value in self.get_fields().items():
+                      ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1105, in get_fields
+    field_class, field_kwargs = self.build_field(
+                                ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1251, in build_field
+    return self.build_unknown_field(field_name, model_class)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 1369, in build_unknown_field
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: Field name `comment` is not valid for model `Comment` in `apps.comments.serializers.CommentCreateSerializer`.
+ERROR 2025-09-22 06:49:50,428 basehttp 66686 6141079552 "POST /api/v1/comments/ HTTP/1.1" 500 162725
+INFO 2025-09-22 06:52:16,317 autoreload 66686 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/serializers.py changed, reloading.
+INFO 2025-09-22 06:52:18,035 autoreload 68637 8371577024 Watching for file changes with StatReloader
+ERROR 2025-09-22 06:52:25,847 log 68637 6134493184 Internal Server Error: /api/v1/comments/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 18, in create
+    serializer.is_valid(raise_exception=True)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 444, in run_validation
+    value = self.to_internal_value(data)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 503, in to_internal_value
+    validated_value = validate_method(validated_value)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/serializers.py", line 37, in validate_post
+    if not Post.objects.filter(value.id, status='published').exists():
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/query.py", line 1493, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/query.py", line 1511, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/query.py", line 1518, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1646, in add_q
+    clause, _ = self._add_q(q_object, can_reuse)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1678, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1523, in build_filter
+    arg, value = filter_expr
+    ^^^^^^^^^^
+TypeError: cannot unpack non-iterable int object
+ERROR 2025-09-22 06:52:25,850 basehttp 68637 6134493184 "POST /api/v1/comments/ HTTP/1.1" 500 170574
+INFO 2025-09-22 06:53:25,239 autoreload 68637 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/serializers.py changed, reloading.
+INFO 2025-09-22 06:53:26,106 autoreload 68994 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-22 06:53:49,049 basehttp 68994 6169325568 "POST /api/v1/comments/ HTTP/1.1" 201 137
+ERROR 2025-09-22 06:53:57,852 log 68994 6169325568 Internal Server Error: /api/v1/comments/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/fields.py", line 1869, in to_representation
+    method = getattr(self.parent, self.method_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CommentSerializer' object has no attribute 'get_replies_count'
+ERROR 2025-09-22 06:53:57,866 basehttp 68994 6169325568 "GET /api/v1/comments/ HTTP/1.1" 500 141976
+INFO 2025-09-22 07:00:36,151 autoreload 68994 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/serializers.py changed, reloading.
+INFO 2025-09-22 07:00:38,332 autoreload 71173 8371577024 Watching for file changes with StatReloader
+ERROR 2025-09-22 07:03:31,447 log 71173 6129086464 Internal Server Error: /api/v1/comments/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/generics.py", line 243, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/mixins.py", line 43, in list
+    return self.get_paginated_response(serializer.data)
+                                       ^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/serializers.py", line 540, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/fields.py", line 1869, in to_representation
+    method = getattr(self.parent, self.method_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'CommentSerializer' object has no attribute 'get_replies_count'
+ERROR 2025-09-22 07:03:31,463 basehttp 71173 6129086464 "GET /api/v1/comments/ HTTP/1.1" 500 141976
+INFO 2025-09-22 07:04:40,779 autoreload 71173 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/serializers.py changed, reloading.
+INFO 2025-09-22 07:04:42,152 autoreload 72471 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-22 07:04:46,663 basehttp 72471 6164312064 "GET /api/v1/comments/ HTTP/1.1" 200 414
+INFO 2025-09-22 07:06:00,538 basehttp 72471 6181138432 "GET /api/v1/comments/1/replies HTTP/1.1" 301 0
+ERROR 2025-09-22 07:06:00,683 log 72471 6181138432 Internal Server Error: /api/v1/comments/1/replies/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 100, in render
+    ret = json.dumps(
+          ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type CommentSerializer is not JSON serializable
+ERROR 2025-09-22 07:06:00,691 basehttp 72471 6181138432 "GET /api/v1/comments/1/replies/ HTTP/1.1" 500 123611
+ERROR 2025-09-22 07:06:06,930 log 72471 6181138432 Internal Server Error: /api/v1/comments/1/replies/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 100, in render
+    ret = json.dumps(
+          ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type CommentSerializer is not JSON serializable
+ERROR 2025-09-22 07:06:06,934 basehttp 72471 6181138432 "GET /api/v1/comments/1/replies/ HTTP/1.1" 500 123451
+INFO 2025-09-22 07:06:55,186 basehttp 72471 6181138432 "POST /api/v1/comments/ HTTP/1.1" 201 130
+ERROR 2025-09-22 07:07:11,682 log 72471 6181138432 Internal Server Error: /api/v1/comments/1/replies/
+Traceback (most recent call last):
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/response.py", line 74, in rendered_content
+    ret = renderer.render(self.data, accepted_media_type, context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/renderers.py", line 100, in render
+    ret = json.dumps(
+          ^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/json.py", line 25, in dumps
+    return json.dumps(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/venv/lib/python3.12/site-packages/rest_framework/utils/encoders.py", line 67, in default
+    return super().default(obj)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type CommentSerializer is not JSON serializable
+ERROR 2025-09-22 07:07:11,692 basehttp 72471 6181138432 "GET /api/v1/comments/1/replies/ HTTP/1.1" 500 126901
+INFO 2025-09-22 07:11:05,802 autoreload 72471 8371577024 /Users/macbook/PycharmProjects/testapps/app-news-drf/app-news/apps/comments/views.py changed, reloading.
+INFO 2025-09-22 07:11:09,116 autoreload 74524 8371577024 Watching for file changes with StatReloader
+INFO 2025-09-22 07:11:11,198 basehttp 74524 6126448640 "GET /api/v1/comments/1/replies/ HTTP/1.1" 200 766
+INFO 2025-09-22 07:11:56,641 basehttp 74524 6126448640 "GET /api/v1/comments/ HTTP/1.1" 200 769
