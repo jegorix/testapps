@@ -35,10 +35,10 @@ class SubscriptionPlanAdmin(admin.ModelAdmin):
         }),
     )
     
-    def subscription_count(self, obj):
+    def subscriptions_counts(self, obj):
         """Count of subscription in Plan"""
         return obj.subscriptions.count()
-    subscription_count.short_description = 'Subscriptions'
+    subscriptions_counts.short_description = 'Subscriptions'
     
     def get_queryset(self, request: HttpRequest) -> QuerySet:
         return super().get_queryset(request).prefetch_related('subscriptions')
@@ -228,7 +228,7 @@ class SubscriptionHistoryAdmin(admin.ModelAdmin):
     def description_short(self, obj):
         """Short description"""
         return obj.description[:100] + '....' if len(obj.description) > 100 else obj.description
-    description_short.short_description = 'Description
+    description_short.short_description = 'Description'
     
     def has_add_permission(self, request: HttpRequest) -> bool:
         """Forbid creation due to admin panel"""
