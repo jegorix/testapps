@@ -227,9 +227,10 @@ class WebhookEvent(models.Model):
         self.processed_at = timezone.now()
         self.save()
         
-    def mark_as_failed(self):
+    def mark_as_failed(self, error_message):
         """Mark event as failed"""
         from django.utils import timezone
         self.status = 'failed'
+        self.error_message = error_message
         self.processed_at = timezone.now()
         self.save()
