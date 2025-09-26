@@ -271,7 +271,7 @@ class PaymentService:
         
         
         
-class WebhookSerice:
+class WebhookService:
     """Service to handle webhook events"""
     
     @staticmethod

@@ -257,16 +257,16 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'apps.subscribe.tasks.send_subscription_expiry_reminder',
         'schedule': 86400.0,  # Каждый день
     },
-    # 'cleanup-old-payments': {
-    #     'task': 'apps.payment.tasks.cleanup_old_payments',
-    #     'schedule': 604800.0,  # Каждую неделю
-    # },
-    # 'cleanup-old-webhook-events': {
-    #     'task': 'apps.payment.tasks.cleanup_old_webhook_events',
-    #     'schedule': 86400.0,  # Каждый день
-    # },
-    # 'retry-failed-webhook-events': {
-    #     'task': 'apps.payment.tasks.retry_failed_webhook_events',
-    #     'schedule': 3600.0,  # Каждый час
-    # },
+    'cleanup-old-payments': {
+        'task': 'apps.payment.tasks.cleanup_old_payments',
+        'schedule': 604800.0,  # Каждую неделю
+    },
+    'cleanup-old-webhook-events': {
+        'task': 'apps.payment.tasks.cleanup_old_webhook_events',
+        'schedule': 86400.0,  # Каждый день
+    },
+    'retry-failed-webhook-events': {
+        'task': 'apps.payment.tasks.retry_failed_webhook_events',
+        'schedule': 3600.0,  # Каждый час
+    },
 }
