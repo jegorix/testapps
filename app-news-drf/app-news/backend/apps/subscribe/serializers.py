@@ -34,7 +34,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     days_remaining = serializers.ReadOnlyField()
     
     class Meta:
-        models = Subscription
+        model = Subscription
 
         fields = [
             'id', 'user', 'user_info', 'plan', 'plan_info', 'status',

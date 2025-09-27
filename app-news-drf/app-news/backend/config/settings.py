@@ -3,6 +3,9 @@ from pathlib import Path
 from decouple import config
 
 # TO RUN FRONTEND - nmp run dev
+# TO RUN WEBHOOK:
+# stripe login
+# stripe listen --forward-to localhost:8000/api/v1/payment/webhooks/stripe/
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 

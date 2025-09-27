@@ -297,16 +297,16 @@ class WebhookService:
             success = False
             
             if event_type == 'checkout.session.completed':
-                success = WebhookSerice._handle_checkout_completed(event_data)
+                success = WebhookService._handle_checkout_completed(event_data)
                 
             elif event_type == 'checkout.session.succeeded':
-                success = WebhookSerice._handle_checkout_succeeded(event_data)
+                success = WebhookService._handle_checkout_succeeded(event_data)
                 
             elif event_type == 'checkout.session.failed':
-                success = WebhookSerice._handle_checkout_failed(event_data)
+                success = WebhookService._handle_checkout_failed(event_data)
                 
             elif event_type == 'checkout.dispute.created':
-                success = WebhookSerice._handle_dispute_created(event_data)
+                success = WebhookService._handle_dispute_created(event_data)
             
             else:
                 # Unknown event type -  mark as ignore
