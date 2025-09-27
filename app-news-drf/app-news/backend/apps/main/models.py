@@ -59,6 +59,25 @@ class PostManager(models.Manager):
             'category'
         ).prefetch_related('pin_info')
         
+        
+    def get_posts_for_feed(self):
+        """Возвращает посты для ленты с учетом закрепленных постов"""
+        from django.db.models import Case, When, Value, BooleanField
+        from django.utils import timezone
+        
+        return self.filter(status='published').annotate(
+            is_pinned_flag=Case(
+                When(
+                    pin_info__isnull=False,
+                    pin_info__user__subscription__status='active',
+                    pin_info__user__subscription__end_date__gt=timezone.now(),
+                    then=Value(True)
+                ),
+                default=Value(False),
+                output_field=BooleanField()
+            )
+        ).order_by('-is_pinned_flag', '-created_at')
+        
 
             
             

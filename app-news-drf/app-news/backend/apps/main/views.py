@@ -66,11 +66,16 @@ class PostListCreateView(generics.ListCreateAPIView):
         show_pinned_first =  not ordering or ordering in ['-created_at', 'created_at']
         
         if show_pinned_first:
-            return Post.get_posts_for_feed().filter(
+            return Post.objects.get_posts_for_feed().filter(
                 Q(status='published') | (
-                Q(author=self.request.user) if self.request.user.is_authenticated else Q
+                    Q(author=self.request.user) if self.request.user.is_authenticated else Q()
                 )
             )
+            # return Post.objects.filter(
+            #     Q(status='published') | (
+            #         Q(author=self.request.user) if self.request.user.is_authenticated else Q()
+            #     )
+            # )
         
         return queryset
     
@@ -143,7 +148,7 @@ def post_by_category(request, category_slug):
     # Receive posts taking into account pinned posts
     # Use model manager for receiving with_subscription_info
     
-    posts = Post.with_subscription_info().filter(
+    posts = Post.objects.with_subscription_info().filter(
         category=category,
         status='published'
     )
@@ -157,9 +162,9 @@ def post_by_category(request, category_slug):
         
         effective_date=Case(
             When(
-                pin_info__isnull=True,
+                pin_info__isnull=False,
                 pin_info__user__subscription__status='active',
-                pin_info__user__subscription__end_date_gt=timezone.now(),
+                pin_info__user__subscription__end_date__gt=timezone.now(),
                 then='pin_info__pinned_at'
             ),
             default='created_at',
@@ -168,9 +173,9 @@ def post_by_category(request, category_slug):
         
         is_pinned_flag=Case(
             When(
-                pin_info__isnull=True,
+                pin_info__isnull=False,
                 pin_info__user__subscription__status='active',
-                pin_info__user__subscription__end_date_gt=timezone.now(),
+                pin_info__user__subscription__end_date__gt=timezone.now(),
                 then=Value(True)
             ),
             default=Value(False),
@@ -193,7 +198,7 @@ def post_by_category(request, category_slug):
 def recent_posts(request):
     """10 recent published posts"""
     
-    posts = Post.with_subscription_info().filter(
+    posts = Post.objects.with_subscription_info().filter(
         status='published'
     ).order_by("-created_at")[:10]
     
@@ -207,7 +212,7 @@ def recent_posts(request):
 def popular_posts(request):
     """10 most popular posts"""
     
-    posts = Post.with_subscription_info().filter(
+    posts = Post.objects.with_subscription_info().filter(
         status='published'
     ).order_by("-views_count")[:10]
     

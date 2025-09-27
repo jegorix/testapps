@@ -24,15 +24,17 @@ class PostListSerializer(serializers.ModelSerializer):
     """Serializer for Post list"""
     author = serializers.StringRelatedField()
     category = serializers.StringRelatedField()
-    comments = serializers.ReadOnlyField()
+    comments_count = serializers.ReadOnlyField()
     is_pinned = serializers.ReadOnlyField()
     pinned_info = serializers.SerializerMethodField()
     
     class Meta:
         model = Post
-        fields = ['id', 'title', 'slug', 'content', 'image', 'category',
-                  'author', 'comments', 'status', 'created_at', 'updated_at',
-                  'views_count', 'comments_count', 'is_pinned', 'pinned_info'] 
+        fields = [
+            'id', 'title', 'slug', 'content', 'image', 'category',
+            'author', 'status', 'created_at', 'updated_at',
+            'views_count', 'comments_count', 'is_pinned', 'pinned_info'
+        ]
         
     def get_pinned_info(self, obj):
         'Returns info about pinned post'
@@ -89,7 +91,7 @@ class PostDetailSerializer(serializers.ModelSerializer):
     def get_pinned_info(self, obj):
         return obj.get_pinned_info()
     
-    def can_pin(self, obj):
+    def get_can_pin(self, obj):
         """Check can current user pin post""" 
         request = self.context.get('request')
         if not request or not request.user.is_authenticated:

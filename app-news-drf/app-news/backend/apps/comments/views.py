@@ -69,7 +69,7 @@ class MyCommentsView(generics.ListAPIView):
         )
         
 @api_view(['GET'])
-@permission_classes(permissions.AllowAny)
+@permission_classes([permissions.AllowAny])
 def post_comments(request, post_id):
     """Receive main comment from specific post"""
     post = get_object_or_404(Post, id=post_id, status='published')
