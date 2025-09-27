@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from decouple import config
 
+# TO RUN FRONTEND - nmp run dev
+
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
