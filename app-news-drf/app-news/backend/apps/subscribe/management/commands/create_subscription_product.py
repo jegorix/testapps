@@ -2,6 +2,8 @@
 from django.core.management.base import BaseCommand
 from apps.subscribe.models import SubscriptionPlan
 
+# СОЗДАЕТ ОБЪЕКТ ПОДПИСКИ, ЧТОБЫ ПОТОМ ДОБАВИТЬ ЕГО В STRIPE
+
 class Command(BaseCommand):
     help = 'Create default subscription plans'
     

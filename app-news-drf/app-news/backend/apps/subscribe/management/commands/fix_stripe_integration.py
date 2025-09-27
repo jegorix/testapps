@@ -1,10 +1,12 @@
-# backend/apps/subscribe/management/commands/fix_stripe_integration.py
+
 import stripe
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from apps.subscribe.models import SubscriptionPlan
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+# СОЗДАЛА ОБЪЕКТ ПОДПИСКИ (СОЗДАННЫЙ В create_subscription_product) В STRIPE
 
 
 class Command(BaseCommand):
