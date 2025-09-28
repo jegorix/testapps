@@ -134,6 +134,13 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+            
+        # Check that slug is unique
+        if Post.objects.filter(slug=self.slug).exclude(id=self.id).exists():
+            # Добавляем случайный суффикс если slug уже существует
+            import uuid
+            self.slug = f"{slugify(self.title)}-{uuid.uuid4().hex[:8]}"
+        
         super().save(*args, **kwargs)
         
     def get_absolute_url(self):
