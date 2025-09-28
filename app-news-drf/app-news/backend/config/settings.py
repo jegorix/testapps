@@ -109,13 +109,26 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / config('STATIC_ROOT', default='staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional locations of static files (только если директория существует)
+STATICFILES_DIRS = []
+
+# Проверяем, существует ли директория static в проекте
+if (BASE_DIR / 'static').exists():
+    STATICFILES_DIRS.append(BASE_DIR / 'static')
+
+# Static files finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Media files
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / config('MEDIA_ROOT', default='media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -183,6 +196,7 @@ X_FRAME_OPTIONS = 'DENY'
 LOG_DIR = BASE_DIR / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
 
+# Логирование
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
