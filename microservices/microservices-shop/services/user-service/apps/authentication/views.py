@@ -1,11 +1,10 @@
-from sys import api_version
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
-from apps.user.models import User
+from apps.users.models import User
 # Create your views here.
 
 
@@ -15,6 +14,11 @@ def login_view(request) -> Response:
     email = request.data.get("email")
     password = request.data.get("password")
 
+    print(
+        f"Received email: '{email}'"
+    )  # Debug: See exact email (check for spaces/case)
+    print(f"Received password: '{password}'")  # Debug: See exact password
+
     if not email or not password:
         return Response(
             {"error": "Email and password are required"},
@@ -22,6 +26,7 @@ def login_view(request) -> Response:
         )
 
     user = authenticate(username=email, password=password)
+    print(f"Authenticated user: {user}")
 
     if user and user.is_active:
         refresh = RefreshToken.for_user(user)
